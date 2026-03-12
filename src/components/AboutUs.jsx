@@ -140,9 +140,13 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.7, ease: 'easeOut', delay: 0.45 }}
-                className="bg-[#111111] border border-[#C9A84C]/10 p-7"
+                className="bg-[#111111] border border-[#C9A84C]/10 p-7 relative overflow-hidden"
               >
-                <blockquote className="font-serif text-lg italic text-gray-300 leading-relaxed">
+                <span
+                  className="absolute -top-4 -left-1 font-serif text-[#C9A84C] select-none pointer-events-none leading-none"
+                  style={{ fontSize: '120px', opacity: 0.15 }}
+                >"</span>
+                <blockquote className="font-serif text-lg italic text-gray-300 leading-relaxed relative">
                   "Unser Versprechen: Wir beraten Sie so, wie wir es für unsere eigene Familie tun würden."
                 </blockquote>
                 <p className="mt-3 text-xs text-[#C9A84C] tracking-[0.15em] uppercase">— Das Edelmetalle-Wertentwickler-Team</p>

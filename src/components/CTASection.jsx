@@ -84,7 +84,7 @@ export default function CTASection() {
         >
           <a
             href="#kontakt-formular"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-[#C9A84C] hover:bg-[#E2C97E] text-[#0A0A0A] text-base font-semibold tracking-wide transition-all duration-200 hover:shadow-[0_0_48px_rgba(201,168,76,0.4)]"
+            className="cta-pulse inline-flex items-center gap-3 px-10 py-5 bg-[#C9A84C] hover:bg-[#E2C97E] text-[#0A0A0A] text-base font-semibold tracking-wide transition-all duration-200 hover:shadow-[0_0_48px_rgba(201,168,76,0.4)]"
           >
             Jetzt Gespräch buchen
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

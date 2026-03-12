@@ -86,7 +86,7 @@ export default function Hero() {
         <motion.div {...fadeUp(1.2)} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
             href="#kontakt"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A84C] hover:bg-[#E2C97E] text-[#0A0A0A] text-base font-semibold tracking-wide transition-all duration-200 hover:shadow-[0_0_32px_rgba(201,168,76,0.35)] w-full sm:w-auto justify-center"
+            className="cta-pulse inline-flex items-center gap-2 px-8 py-4 bg-[#C9A84C] hover:bg-[#E2C97E] text-[#0A0A0A] text-base font-semibold tracking-wide transition-all duration-200 hover:shadow-[0_0_32px_rgba(201,168,76,0.35)] w-full sm:w-auto justify-center"
           >
             Jetzt Gespräch buchen
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -89,7 +89,9 @@ export default function WhyPreciousMetals() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
-              className="group bg-[#111111] border border-white/5 p-8 hover:border-[#C9A84C]/20 transition-all duration-300"
+              className="group bg-[#111111] p-8"
+              style={{ boxShadow: '0 0 20px rgba(201,168,76,0.08)' }}
+              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(201,168,76,0.2)', transition: { duration: 0.3, ease: 'easeOut' } }}
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-11 h-11 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] group-hover:border-[#C9A84C]/50 transition-colors duration-300">
