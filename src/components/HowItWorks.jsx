@@ -5,14 +5,14 @@ const steps = [
     number: '01',
     title: 'Persönliche Beratung',
     description:
-      'In einem vertraulichen Erstgespräch — kostenlos und unverbindlich — analysieren wir gemeinsam Ihre finanzielle Situation, Ihre Ziele und Ihren Anlagehorizont.',
+      'In einem vertraulichen Erstgespräch, kostenlos und unverbindlich, analysieren wir gemeinsam Ihre finanzielle Situation, Ihre Ziele und Ihren Anlagehorizont.',
     badge: 'Kostenlos & Unverbindlich',
   },
   {
     number: '02',
     title: 'Maßgeschneiderte Auswahl',
     description:
-      'Auf Basis Ihrer individuellen Bedürfnisse empfehlen wir Ihnen die passenden Edelmetalle — ob Goldbarren, Goldmünzen oder Silber — abgestimmt auf Budget und Strategie.',
+      'Auf Basis Ihrer individuellen Bedürfnisse empfehlen wir Ihnen die passenden Edelmetalle. Ob Goldbarren oder Silber, abgestimmt auf Budget und Strategie.',
     badge: 'Individuell & Transparent',
   },
   {
@@ -54,7 +54,7 @@ export default function HowItWorks() {
             Ihr Weg zur sicheren Wertanlage
           </h2>
           <p className="max-w-xl mx-auto text-gray-400 text-lg">
-            Drei klare Schritte — begleitet von erfahrenen Experten.
+            Drei klare Schritte, begleitet von erfahrenen Experten.
           </p>
         </motion.div>
 

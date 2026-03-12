@@ -9,7 +9,7 @@ const reasons = [
       </svg>
     ),
     title: 'Krisenresistenz',
-    text: 'Edelmetalle haben Kriege, Währungsreformen und Börsencrashs überstanden. Gold ist die einzige Anlageform, die über Jahrtausende hinweg — vollständig unabhängig von Staaten oder Banken — ihren Wert bewahrt hat.',
+    text: 'Edelmetalle haben Kriege, Währungsreformen und Börsencrashs überstanden. Gold ist die einzige Anlageform, die über Jahrtausende hinweg ihren Wert bewahrt hat. Vollständig unabhängig von Staaten oder Banken.',
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const reasons = [
       </svg>
     ),
     title: 'Schutz vor Inflation',
-    text: 'Während Papiergeld durch Inflation schleichend entwertet wird, behält physisches Gold seine Kaufkraft. Historisch hat Gold die Inflation langfristig stets kompensiert — und oft übertroffen.',
+    text: 'Während Papiergeld durch Inflation schleichend entwertet wird, behält physisches Gold seine Kaufkraft. Historisch hat Gold die Inflation langfristig stets kompensiert. Und oft übertroffen.',
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const reasons = [
       </svg>
     ),
     title: 'Physischer Besitz',
-    text: 'Anders als Wertpapiere oder digitale Anlagen halten Sie etwas Greifbares in der Hand. Kein Gegenparteirisiko, keine Bankabhängigkeit — Ihr Edelmetall gehört einzig und allein Ihnen.',
+    text: 'Anders als Wertpapiere oder digitale Anlagen halten Sie etwas Greifbares in der Hand. Kein Gegenparteirisiko, keine Bankabhängigkeit. Ihr Edelmetall gehört einzig und allein Ihnen.',
   },
   {
     icon: (
@@ -39,7 +39,7 @@ const reasons = [
       </svg>
     ),
     title: 'Bewährte Wertstabilität',
-    text: 'Gold hat seinen Wert über mehr als 5.000 Jahre bewahrt. Langfristig ist es eine der verlässlichsten Anlageformen — ein bewährter Grundpfeiler jedes ausgewogenen Portfolios.',
+    text: 'Gold hat seinen Wert über mehr als 5.000 Jahre bewahrt. Langfristig ist es eine der verlässlichsten Anlageformen. Ein bewährter Grundpfeiler jedes ausgewogenen Portfolios.',
   },
 ]
 
@@ -75,7 +75,7 @@ export default function WhyPreciousMetals() {
             <em className="not-italic italic text-[#C9A84C]"> Edelmetalle</em> setzen
           </h2>
           <p className="max-w-xl mx-auto text-gray-400 text-lg">
-            In einer Welt voller finanzieller Unsicherheiten bieten Gold und Silber zeitlose Stabilität.
+            Gold und Silber sind die einzigen Anlageformen, die keine Gegenpartei brauchen. Kein Institut, das pleite gehen kann. Kein Vertrag, der sich ändert. Nur physischer Wert.
           </p>
         </motion.div>
 

@@ -112,11 +112,11 @@ export default function AboutUs() {
                 <p>
                   Wir verstehen uns nicht als Verkäufer, sondern als Berater. Unser Ziel ist es, Ihnen das
                   Wissen und die Werkzeuge an die Hand zu geben, um fundierte Entscheidungen für Ihre
-                  finanzielle Zukunft zu treffen — ohne Druck, ohne versteckte Interessen.
+                  finanzielle Zukunft zu treffen. Ohne Druck, ohne versteckte Interessen.
                 </p>
                 <p>
                   Diskretion, fachliche Kompetenz und vollständig transparente Konditionen sind die
-                  Grundpfeiler unserer Arbeit — seit dem ersten Tag.
+                  Grundpfeiler unserer Arbeit. Seit dem ersten Tag.
                 </p>
               </div>
 
