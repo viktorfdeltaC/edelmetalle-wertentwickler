@@ -36,7 +36,9 @@ export default function SwissStorage() {
   }, [])
 
   return (
-    <section className="bg-secondary/30 py-24 lg:py-32">
+    <section className="relative bg-secondary/30 py-24 lg:py-32">
+      {/* Feine Gold-Haarlinie als bewusster, klarer Übergang aus der dunklen Sequenz */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Image plate (left) */}
         <motion.div

@@ -112,7 +112,7 @@ export default function GoldSequence() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-x-0 top-0 h-1/2 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(8,8,10,0.85), transparent)' }} />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,8,10,0.9), transparent)' }} />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,8,10,1) 6%, rgba(8,8,10,0.85), transparent)' }} />
 
         <motion.div style={{ opacity: textOpacity, y: textY }} className="relative z-10 pt-28 sm:pt-32 px-6 text-center">
           <span className="text-[#E2C97E] text-xs font-medium tracking-[0.2em] uppercase">Physischer Sachwert</span>

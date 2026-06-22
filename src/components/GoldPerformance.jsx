@@ -87,7 +87,7 @@ function CompareBar({ label, valueText, pct, gold, delay }) {
           className="absolute inset-y-0 left-0 rounded-full overflow-hidden"
           style={{
             width: inView ? `${pct}%` : '0%',
-            transition: `width 1.3s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+            transition: `width 1.8s cubic-bezier(0.33, 1, 0.68, 1) ${delay}s`,
             background: gold
               ? 'linear-gradient(90deg, #B0832F, #E7C36C, #F6DD93)'
               : 'linear-gradient(90deg, hsl(var(--muted-foreground) / 0.5), hsl(var(--muted-foreground) / 0.85))',
@@ -151,8 +151,8 @@ export default function GoldPerformance() {
     setHover(best)
   }
 
-  const drawGold = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 1.7s cubic-bezier(0.16,1,0.3,1)' }
-  const drawSilver = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 1.7s cubic-bezier(0.16,1,0.3,1) 0.25s' }
+  const drawGold = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 2.1s cubic-bezier(0.33, 1, 0.68, 1)' }
+  const drawSilver = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 2.1s cubic-bezier(0.33, 1, 0.68, 1) 0.25s' }
 
   return (
     <section id="wertentwicklung" className="py-24 lg:py-32">
@@ -266,7 +266,7 @@ export default function GoldPerformance() {
               ))}
 
               {/* Gold-Fläche */}
-              <path d={goldAreaPath} fill="url(#goldArea)" style={{ opacity: inView ? 1 : 0, transition: 'opacity 1s ease 0.2s' }} />
+              <path d={goldAreaPath} fill="url(#goldArea)" style={{ opacity: inView ? 1 : 0, transition: 'opacity 1.4s ease 0.3s' }} />
 
               {/* Silber-Linie */}
               <path d={silverLinePath} fill="none" stroke="#B7BFC9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={drawSilver} />
@@ -276,7 +276,7 @@ export default function GoldPerformance() {
               <path d={goldLinePath} fill="none" stroke="url(#goldLine)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={drawGold} />
 
               {/* End-Punkte + Endwerte rechts daneben */}
-              <g style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s ease 1.4s' }}>
+              <g style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.7s ease 1.9s' }}>
                 <circle cx={goldLast.x} cy={goldLast.y} r="9" fill="hsl(var(--primary))" opacity="0.25" filter="url(#lineGlow)" />
                 <circle cx={goldLast.x} cy={goldLast.y} r="5.5" fill="#F6DD93" stroke="hsl(var(--card))" strokeWidth="2.5" />
                 <circle cx={silverLast.x} cy={silverLast.y} r="4.5" fill="#C3CAD4" stroke="hsl(var(--card))" strokeWidth="2" />
