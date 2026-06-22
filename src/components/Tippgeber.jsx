@@ -50,7 +50,7 @@ export default function Tippgeber() {
             <motion.div
               key={step.number}
               {...fadeUp(idx * 0.08)}
-              className="rounded-2xl border border-border bg-card p-7 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
+              className="rounded-2xl border border-border bg-card p-7 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_14px_36px_-18px_rgba(0,0,0,0.12)]"
             >
               <span className="font-serif text-3xl font-semibold text-primary leading-none tabular-nums">
                 {step.number}
@@ -65,7 +65,7 @@ export default function Tippgeber() {
         <motion.div {...fadeUp(0.1)} className="text-center">
           <a
             href={ONBOARDING_URL}
-            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-primary text-primary-foreground text-base font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.35)] hover:-translate-y-px hover:brightness-110 transition-all duration-200"
+            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-primary text-primary-foreground text-base font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.35)] hover:-translate-y-px hover:brightness-110 transition-all duration-200"
           >
             Jetzt als Tippgeber registrieren
             <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

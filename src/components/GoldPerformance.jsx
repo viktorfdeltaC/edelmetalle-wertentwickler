@@ -118,7 +118,7 @@ export default function GoldPerformance() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="rounded-2xl border border-border bg-card shadow-[0_1px_4px_rgba(0,0,0,0.04)] p-5 sm:p-7"
+            className="rounded-2xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.03),0_14px_36px_-18px_rgba(0,0,0,0.12)] p-5 sm:p-7"
           >
             <div className="flex items-baseline justify-between mb-4">
               <span className="text-sm font-medium">Goldpreis · EUR / Unze</span>

@@ -94,7 +94,7 @@ export default function Navbar() {
 
             <a
               href="#kontakt"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl bg-primary hover:brightness-110 text-primary-foreground text-sm font-medium transition-all duration-200"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full bg-primary hover:brightness-110 text-primary-foreground text-sm font-medium transition-all duration-200"
             >
               Gespräch buchen
             </a>
@@ -134,7 +134,7 @@ export default function Navbar() {
               <a
                 href="#kontakt"
                 onClick={() => setMobileOpen(false)}
-                className="block text-center px-5 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium"
+                className="block text-center px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-medium"
               >
                 Jetzt Gespräch buchen
               </a>

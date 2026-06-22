@@ -91,7 +91,7 @@ export default function WhyPreciousMetals() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
-              className="group rounded-2xl border border-border bg-card p-7 shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-200 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] hover:-translate-y-1"
+              className="group rounded-2xl border border-border bg-card p-7 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_14px_36px_-18px_rgba(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_18px_44px_-16px_rgba(0,0,0,0.20)] hover:-translate-y-1.5"
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-11 h-11 rounded-full bg-primary/[0.08] flex items-center justify-center text-primary">

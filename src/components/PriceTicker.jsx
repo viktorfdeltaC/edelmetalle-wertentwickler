@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 
 function formatPrice(price) {
   return price.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -9,23 +9,32 @@ export default function PriceTicker() {
   const [silver, setSilver] = useState(null)
   const [error, setError] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const hasData = useRef(false)
 
   useEffect(() => {
+    let cancelled = false
     const fetchPrices = async () => {
       try {
-        const [goldRes, silverRes] = await Promise.all([
-          fetch('https://v6.exchangerate-api.com/v6/bcd7b182b4890fffe5b7b990/latest/XAU'),
-          fetch('https://v6.exchangerate-api.com/v6/bcd7b182b4890fffe5b7b990/latest/XAG'),
-        ])
-        if (!goldRes.ok || !silverRes.ok) throw new Error('API error')
-        const [goldData, silverData] = await Promise.all([goldRes.json(), silverRes.json()])
-        setGold(goldData.conversion_rates.EUR)
-        setSilver(silverData.conversion_rates.EUR)
+        const res = await fetch('/api/prices')
+        if (!res.ok) throw new Error('API error')
+        const data = await res.json()
+        if (typeof data.gold !== 'number' || typeof data.silver !== 'number') throw new Error('No data')
+        if (cancelled) return
+        setGold(data.gold)
+        setSilver(data.silver)
+        setError(false)
+        hasData.current = true
       } catch {
-        setError(true)
+        // Bei einem späteren Fehlversuch die zuletzt gezeigten Kurse behalten.
+        if (!cancelled && !hasData.current) setError(true)
       }
     }
     fetchPrices()
+    const id = setInterval(fetchPrices, 60_000)
+    return () => {
+      cancelled = true
+      clearInterval(id)
+    }
   }, [])
 
   useEffect(() => {
