@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 const reasons = [
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round"
           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
@@ -13,9 +13,8 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
     title: 'Schutz vor Inflation',
@@ -23,9 +22,8 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
     title: 'Physischer Besitz',
@@ -33,9 +31,8 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     title: 'Bewährte Wertstabilität',
@@ -44,37 +41,32 @@ const reasons = [
 ]
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: 'easeOut', delay: i * 0.15 },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 },
   }),
 }
 
 export default function WhyPreciousMetals() {
   return (
-    <section id="warum" className="bg-[#0D0D0D] py-24 lg:py-32">
+    <section id="warum" className="bg-secondary/30 py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-8 bg-[#C9A84C]/50" />
-            <span className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase">Warum Edelmetalle</span>
-            <div className="h-px w-8 bg-[#C9A84C]/50" />
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold mb-4 leading-tight">
+          <span className="text-primary text-xs font-medium tracking-[0.15em] uppercase">Warum Edelmetalle</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight font-semibold mt-4 mb-4 leading-tight">
             Warum kluge Anleger auf
-            <br className="hidden sm:block" />
-            <em className="not-italic italic text-[#C9A84C]"> Edelmetalle</em> setzen
+            <span className="text-primary"> Edelmetalle</span> setzen
           </h2>
-          <p className="max-w-xl mx-auto text-gray-400 text-lg">
+          <p className="max-w-xl mx-auto text-muted-foreground text-lg leading-relaxed">
             Gold und Silber sind die einzigen Anlageformen, die keine Gegenpartei brauchen. Kein Institut, das pleite gehen kann. Kein Vertrag, der sich ändert. Nur physischer Wert.
           </p>
         </motion.div>
@@ -89,17 +81,15 @@ export default function WhyPreciousMetals() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
-              className="group bg-[#111111] p-8"
-              style={{ boxShadow: '0 0 20px rgba(201,168,76,0.08)' }}
-              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(201,168,76,0.2)', transition: { duration: 0.3, ease: 'easeOut' } }}
+              className="group rounded-2xl border border-border bg-card p-7 shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-all duration-200 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] hover:-translate-y-1"
             >
               <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-11 h-11 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] group-hover:border-[#C9A84C]/50 transition-colors duration-300">
+                <div className="flex-shrink-0 w-11 h-11 rounded-full bg-primary/[0.08] flex items-center justify-center text-primary">
                   {reason.icon}
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl text-white font-semibold mb-3">{reason.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-[15px]">{reason.text}</p>
+                  <h3 className="font-serif text-xl font-semibold mb-2.5 tracking-tight">{reason.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-[15px]">{reason.text}</p>
                 </div>
               </div>
             </motion.div>

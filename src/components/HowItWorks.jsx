@@ -25,41 +25,37 @@ const steps = [
 ]
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: 'easeOut', delay: i * 0.15 },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 },
   }),
 }
 
 export default function HowItWorks() {
   return (
-    <section id="prozess" className="bg-[#0A0A0A] py-24 lg:py-32">
+    <section id="prozess" className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 40 }}
+          className="text-center mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-8 bg-[#C9A84C]/50" />
-            <span className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase">Der Prozess</span>
-            <div className="h-px w-8 bg-[#C9A84C]/50" />
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold mb-4 leading-tight">
+          <span className="text-primary text-xs font-medium tracking-[0.15em] uppercase">Der Prozess</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight font-semibold mt-4 mb-4 leading-tight">
             Ihr Weg zur sicheren Wertanlage
           </h2>
-          <p className="max-w-xl mx-auto text-gray-400 text-lg">
+          <p className="max-w-xl mx-auto text-muted-foreground text-lg leading-relaxed">
             Drei klare Schritte, begleitet von erfahrenen Experten.
           </p>
         </motion.div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
@@ -70,19 +66,18 @@ export default function HowItWorks() {
               viewport={{ once: true, margin: '-60px' }}
               className="flex flex-col"
             >
-              {/* Step header */}
               <div className="flex items-center gap-4 mb-6">
-                <span className="font-serif text-5xl font-bold text-[#D4AF37] leading-none select-none tabular-nums">
+                <span className="font-serif text-5xl font-semibold text-primary leading-none select-none tabular-nums">
                   {step.number}
                 </span>
-                <div className="flex-1 h-px bg-gradient-to-r from-[#C9A84C]/40 to-transparent" />
+                <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
               </div>
 
-              <h3 className="font-serif text-xl text-white font-semibold mb-3">{step.title}</h3>
-              <p className="text-gray-400 text-[15px] leading-relaxed mb-5 flex-1">
+              <h3 className="font-serif text-xl font-semibold mb-3 tracking-tight">{step.title}</h3>
+              <p className="text-muted-foreground text-[15px] leading-relaxed mb-5 flex-1">
                 {step.description}
               </p>
-              <span className="self-start text-[11px] text-[#C9A84C] tracking-[0.15em] uppercase border border-[#C9A84C]/20 px-3 py-1.5">
+              <span className="self-start text-[11px] font-medium text-primary tracking-[0.1em] uppercase rounded-full bg-primary/[0.08] px-3 py-1.5">
                 {step.badge}
               </span>
             </motion.div>
@@ -92,18 +87,18 @@ export default function HowItWorks() {
         {/* Bottom CTA nudge */}
         <motion.div
           className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.45 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
           <a
             href="#kontakt"
-            className="inline-flex items-center gap-2 text-[#C9A84C] text-sm hover:text-[#E2C97E] transition-colors tracking-wide group"
+            className="group inline-flex items-center gap-2 text-primary text-sm font-medium hover:brightness-110 transition-colors"
           >
             Jetzt ersten Schritt machen
-            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
         </motion.div>

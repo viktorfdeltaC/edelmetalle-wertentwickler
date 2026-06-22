@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import aboutImg from '../assets/about-bg.jpg'
 
 const stats = [
-  { value: '15+', label: 'Jahre Erfahrung im Edelmetallmarkt', target: 15, suffix: '+' },
-  { value: '500+', label: 'Privatanleger erfolgreich beraten', target: 500, suffix: '+' },
-  { value: '100%', label: 'Unabhängig & herstellerneutral', target: 100, suffix: '%' },
+  { label: 'Jahre Erfahrung im Edelmetallmarkt', target: 15, suffix: '+' },
+  { label: 'Privatanleger erfolgreich beraten', target: 500, suffix: '+' },
+  { label: 'Unabhängig & herstellerneutral', target: 100, suffix: '%' },
 ]
 
 function useCountUp(target, duration = 1500) {
@@ -45,36 +45,36 @@ function StatItem({ stat, delay }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, ease: 'easeOut', delay }}
-      className="bg-[#111111] border border-white/5 p-7 flex items-center gap-6 hover:border-[#C9A84C]/15 transition-colors duration-300"
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay }}
+      className="rounded-2xl border border-border bg-card p-6 flex items-center gap-6 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
     >
       <div className="flex-shrink-0 w-24 text-right">
-        <span className="font-serif text-4xl text-[#C9A84C] font-bold">
+        <span className="font-serif text-4xl text-primary font-semibold tabular-nums">
           {count}{stat.suffix}
         </span>
       </div>
-      <div className="w-px h-10 bg-[#C9A84C]/15 flex-shrink-0" />
-      <p className="text-gray-300 text-sm leading-snug">{stat.label}</p>
+      <div className="w-px h-10 bg-border flex-shrink-0" />
+      <p className="text-muted-foreground text-sm leading-snug">{stat.label}</p>
     </motion.div>
   )
 }
 
 export default function AboutUs() {
   return (
-    <section id="ueber-uns" className="bg-[#0D0D0D] py-24 lg:py-32">
+    <section id="ueber-uns" className="bg-secondary/30 py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
 
           {/* Image — first in DOM = top on mobile, right on desktop */}
           <motion.div
-            className="relative overflow-hidden rounded-lg min-h-[320px] lg:min-h-0 lg:order-last"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="relative overflow-hidden rounded-2xl min-h-[320px] lg:min-h-0 lg:order-last"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <img
               src={aboutImg}
@@ -83,29 +83,24 @@ export default function AboutUs() {
               loading="lazy"
               decoding="async"
             />
-            {/* Subtle dark overlay */}
-            <div className="absolute inset-0 bg-black/20 rounded-lg" />
+            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
           </motion.div>
 
           {/* Text block + Stats — left on desktop, below image on mobile */}
           <div className="lg:order-first flex flex-col gap-10">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#C9A84C]/50" />
-                <span className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase">Über uns</span>
-              </div>
-              <h2 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-7 leading-tight">
+              <span className="text-primary text-xs font-medium tracking-[0.15em] uppercase">Über uns</span>
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight font-semibold mt-4 mb-7 leading-tight">
                 Kompetenz, Diskretion
-                <br />
-                <em className="not-italic italic text-[#C9A84C]">und Vertrauen</em>
+                <span className="block text-primary">und Vertrauen</span>
               </h2>
 
-              <div className="space-y-5 text-gray-400 text-[15px] leading-relaxed">
+              <div className="space-y-5 text-muted-foreground text-[15px] leading-relaxed">
                 <p>
                   Wir sind ein unabhängiger Anbieter für physische Edelmetallinvestments mit Sitz in Deutschland.
                   Unser Team berät seit über einem Jahrzehnt Privatanleger, die ihr Vermögen langfristig schützen
@@ -121,37 +116,25 @@ export default function AboutUs() {
                   Grundpfeiler unserer Arbeit. Seit dem ersten Tag.
                 </p>
               </div>
-
-              <div className="flex items-center gap-3 mt-10">
-                <div className="h-px w-6 bg-[#C9A84C]/40" />
-                <svg className="w-3 h-3 text-[#C9A84C]/40" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 0L9.797 5.753H16L10.902 9.247L12.699 15L8 11.506L3.301 15L5.098 9.247L0 5.753H6.203L8 0Z" />
-                </svg>
-                <div className="h-px flex-1 bg-[#C9A84C]/10" />
-              </div>
             </motion.div>
 
             {/* Stats */}
             <div className="space-y-4">
               {stats.map((stat, idx) => (
-                <StatItem key={idx} stat={stat} delay={idx * 0.15} />
+                <StatItem key={idx} stat={stat} delay={idx * 0.08} />
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.45 }}
-                className="bg-[#111111] border border-[#C9A84C]/10 p-7 relative overflow-hidden"
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.24 }}
+                className="rounded-2xl border-l-2 border-primary bg-card px-7 py-6 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
               >
-                <span
-                  className="absolute -top-4 -left-1 font-serif text-[#C9A84C] select-none pointer-events-none leading-none"
-                  style={{ fontSize: '120px', opacity: 0.15 }}
-                >"</span>
-                <blockquote className="font-serif text-lg italic text-gray-300 leading-relaxed relative">
-                  "Unser Versprechen: Wir beraten Sie so, wie wir es für unsere eigene Familie tun würden."
+                <blockquote className="font-serif text-lg italic text-foreground/90 leading-relaxed">
+                  „Unser Versprechen: Wir beraten Sie so, wie wir es für unsere eigene Familie tun würden."
                 </blockquote>
-                <p className="mt-3 text-xs text-[#C9A84C] tracking-[0.15em] uppercase">— Das Edelmetalle-Wertentwickler-Team</p>
+                <p className="mt-3 text-xs text-primary tracking-[0.1em] uppercase">— Das Edelmetalle-Wertentwickler-Team</p>
               </motion.div>
             </div>
           </div>

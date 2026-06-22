@@ -27,29 +27,36 @@ export default function PriceTicker() {
     fetchPrices()
   }, [])
 
+  const isLive = gold && silver && !error
+
   return (
-    <div className="fixed z-40 left-0 right-0 top-14 md:top-16 bg-[#111111] border-b border-[#C9A84C] h-8 flex items-center justify-center">
+    <div className="fixed z-40 left-0 right-0 top-14 md:top-16 bg-card/80 backdrop-blur-md border-b border-border h-9 flex items-center justify-center">
       {error ? (
-        <span className="text-xs text-gray-500 tracking-wide">Kurse momentan nicht verfügbar</span>
+        <span className="text-xs text-muted-foreground">Kurse momentan nicht verfügbar</span>
       ) : !gold || !silver ? (
-        <span className="text-xs text-gray-600 tracking-wide animate-pulse">Kurse werden geladen …</span>
+        <span className="text-xs text-muted-foreground animate-pulse">Kurse werden geladen …</span>
       ) : (
-        <div className="flex items-center gap-6 sm:gap-10 text-xs">
-          <PriceItem emoji="🥇" label="Gold" price={gold} />
-          <span className="w-px h-3 bg-[#C9A84C]/20" />
-          <PriceItem emoji="🥈" label="Silber" price={silver} />
+        <div className="flex items-center gap-6 sm:gap-10 text-xs tabular-nums">
+          <PriceItem label="Gold" price={gold} />
+          <span className="w-px h-3.5 bg-border" />
+          <PriceItem label="Silber" price={silver} />
+          {isLive && (
+            <span className="hidden sm:flex items-center gap-1.5 text-muted-foreground">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Live
+            </span>
+          )}
         </div>
       )}
     </div>
   )
 }
 
-const PriceItem = memo(function PriceItem({ emoji, label, price }) {
+const PriceItem = memo(function PriceItem({ label, price }) {
   return (
     <span className="flex items-center gap-1.5">
-      <span>{emoji}</span>
-      <span className="text-gray-400">{label}</span>
-      <span className="text-white font-medium">{formatPrice(price)} €/oz</span>
+      <span className="text-muted-foreground">{label}</span>
+      <span className="text-foreground font-medium">{formatPrice(price)} €/oz</span>
     </span>
   )
 })

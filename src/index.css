@@ -3,54 +3,95 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light — warm cream, like fine stationery */
+    --background: 40 30% 97%;
+    --foreground: 225 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 225 25% 12%;
+    --primary: 36 60% 38%;
+    --primary-foreground: 40 30% 97%;
+    --secondary: 35 15% 93%;
+    --secondary-foreground: 225 25% 12%;
+    --muted: 35 15% 93%;
+    --muted-foreground: 225 8% 46%;
+    --accent: 36 60% 38%;
+    --accent-foreground: 40 30% 97%;
+    --border: 35 15% 88%;
+    --input: 35 15% 88%;
+    --ring: 36 60% 38%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark — warm oak, not cold tech */
+    --background: 225 14% 7%;
+    --foreground: 35 14% 86%;
+    --card: 225 10% 11%;
+    --card-foreground: 35 14% 86%;
+    --primary: 39 55% 53%;
+    --primary-foreground: 225 14% 7%;
+    --secondary: 225 8% 14%;
+    --secondary-foreground: 35 14% 86%;
+    --muted: 225 8% 14%;
+    --muted-foreground: 28 8% 50%;
+    --accent: 39 55% 53%;
+    --accent-foreground: 225 14% 7%;
+    --border: 225 8% 16%;
+    --input: 225 8% 16%;
+    --ring: 39 55% 53%;
+  }
+}
+
+@layer base {
   html {
     scroll-behavior: smooth;
   }
 
   * {
-    cursor: none;
-  }
-
-  * {
+    border-color: hsl(var(--border));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #0A0A0A;
-    color: #e5e7eb;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+    @apply font-serif;
   }
 }
 
 @layer utilities {
-  .text-gold-gradient {
-    background: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #C9A84C 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Subtle paper grain — blended, not a flat overlay */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+  }
+  .dark .grain::after {
+    opacity: 0.025;
+    mix-blend-mode: overlay;
   }
 
-  .gold-shimmer {
-    background: linear-gradient(135deg, #A8852E 0%, #C9A84C 40%, #E2C97E 60%, #C9A84C 80%, #A8852E 100%);
-    background-size: 200% auto;
-    animation: shimmer 3s linear infinite;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
-  @keyframes shimmer {
-    to { background-position: 200% center; }
+  .animate-rise {
+    animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-
-  @keyframes cta-pulse {
-    0%, 100% { box-shadow: 0 0 0px rgba(201,168,76,0); }
-    50% { box-shadow: 0 0 20px rgba(201,168,76,0.4); }
-  }
-
-  .cta-pulse {
-    animation: cta-pulse 2.5s ease-in-out infinite;
-  }
+  .delay-1 { animation-delay: 80ms; }
+  .delay-2 { animation-delay: 160ms; }
+  .delay-3 { animation-delay: 240ms; }
+  .delay-4 { animation-delay: 320ms; }
+  .delay-5 { animation-delay: 400ms; }
 }
