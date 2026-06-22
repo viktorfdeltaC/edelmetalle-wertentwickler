@@ -1,31 +1,7 @@
 import { useState, useEffect } from 'react'
-import logoSrc from '../assets/logo.png'
+import logoDark from '../assets/logo-dark.png'
+import logoLight from '../assets/logo-light.png'
 import { useTheme } from '../lib/useTheme'
-
-function useWhiteRemoved(src) {
-  const [result, setResult] = useState(src)
-  useEffect(() => {
-    const img = new Image()
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = img.naturalWidth
-      canvas.height = img.naturalHeight
-      const ctx = canvas.getContext('2d')
-      ctx.drawImage(img, 0, 0)
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-      const { data } = imageData
-      for (let i = 0; i < data.length; i += 4) {
-        if (data[i] > 240 && data[i + 1] > 240 && data[i + 2] > 240) {
-          data[i + 3] = 0
-        }
-      }
-      ctx.putImageData(imageData, 0, 0)
-      setResult(canvas.toDataURL())
-    }
-    img.src = src
-  }, [src])
-  return result
-}
 
 const navLinks = [
   { label: 'Warum Edelmetalle', href: '#warum' },
@@ -38,7 +14,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const logo = useWhiteRemoved(logoSrc)
   const { theme, toggle } = useTheme()
 
   useEffect(() => {
@@ -49,6 +24,8 @@ export default function Navbar() {
 
   // "solid" = themed bar once scrolled / menu open; transparent with light text over the dark hero stage.
   const solid = scrolled || mobileOpen
+  // Heller Hintergrund nur bei gescrolltem Light-Mode → dunkle Logo-Variante; sonst helle.
+  const lightBg = solid && theme === 'light'
   const linkClass = solid
     ? 'text-muted-foreground hover:text-foreground'
     : 'text-white/80 hover:text-white'
@@ -66,7 +43,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
           <a href="#" className="flex-shrink-0">
-            <img src={logo} alt="Edelmetalle Wertentwickler" className="h-12 w-auto" />
+            <img src={lightBg ? logoLight : logoDark} alt="Edelmetalle Wertentwickler" className="h-11 w-auto" />
           </a>
 
           {/* Desktop nav links */}

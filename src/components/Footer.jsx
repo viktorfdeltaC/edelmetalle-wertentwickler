@@ -1,3 +1,6 @@
+import logoDark from '../assets/logo-dark.png'
+import logoLight from '../assets/logo-light.png'
+
 export default function Footer() {
   const year = new Date().getFullYear()
 
@@ -7,15 +10,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           {/* Logo + tagline */}
           <div className="flex flex-col items-center md:items-start gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-primary/[0.08] flex items-center justify-center">
-                <span className="font-serif text-primary text-[11px] font-semibold tracking-wider">EW</span>
-              </div>
-              <div className="leading-tight">
-                <div className="text-foreground text-xs font-semibold tracking-[0.2em] uppercase">Edelmetalle</div>
-                <div className="text-primary text-[9px] tracking-[0.3em] uppercase">Wertentwickler</div>
-              </div>
-            </div>
+            <a href="#" className="block">
+              <img src={logoLight} alt="Edelmetalle Wertentwickler" className="h-10 w-auto dark:hidden" />
+              <img src={logoDark} alt="Edelmetalle Wertentwickler" className="h-10 w-auto hidden dark:block" />
+            </a>
             <p className="text-muted-foreground text-xs max-w-[220px] text-center md:text-left leading-relaxed">
               Physisches Gold und Silber für langfristigen Vermögenserhalt.
             </p>
