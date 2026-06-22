@@ -44,7 +44,7 @@ export default function SwissStorage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative"
+          className="relative order-2 lg:order-1"
         >
           <div className="relative rounded-3xl overflow-hidden ring-1 ring-border shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)]">
             <video
@@ -61,8 +61,8 @@ export default function SwissStorage() {
           </div>
         </motion.div>
 
-        {/* Text (right) */}
-        <div>
+        {/* Text — first on mobile (heading above the media), right on desktop */}
+        <div className="order-1 lg:order-2">
           <motion.span {...fadeUp(0)} className="block text-primary text-xs font-medium tracking-[0.15em] uppercase">
             Verwahrung
           </motion.span>

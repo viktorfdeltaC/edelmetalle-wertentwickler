@@ -137,56 +137,45 @@ export default function GoldPerformance() {
               {gridLines.map((g) => (
                 <g key={g}>
                   <line x1={PAD.left} x2={W - PAD.right} y1={y(g)} y2={y(g)} stroke="hsl(var(--border))" strokeWidth="1" />
-                  <text x={PAD.left + 2} y={y(g) - 4} fontSize="11" fill="hsl(var(--muted-foreground))" className="tabular-nums">
+                  <text x={PAD.left + 2} y={y(g) - 6} fontSize="20" fill="hsl(var(--muted-foreground))" className="tabular-nums">
                     {g.toLocaleString('de-DE')} €
                   </text>
                 </g>
               ))}
 
               {/* Area */}
-              <motion.path
-                d={areaPath}
-                fill="url(#goldArea)"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
+              <path d={areaPath} fill="url(#goldArea)" />
 
               {/* Line */}
-              <motion.path
+              <path
                 d={linePath}
                 fill="none"
                 stroke="hsl(var(--primary))"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               />
 
               {/* End marker */}
-              <motion.circle
-                cx={last.x}
-                cy={last.y}
-                r="4.5"
-                fill="hsl(var(--primary))"
-                stroke="hsl(var(--card))"
-                strokeWidth="2"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 1.3 }}
-              />
+              <circle cx={last.x} cy={last.y} r="5" fill="hsl(var(--primary))" stroke="hsl(var(--card))" strokeWidth="2" />
 
               {/* X labels */}
-              {data.filter((_, i) => i % 2 === 0).map((d) => (
-                <text key={d.year} x={x(d.year)} y={H - 8} fontSize="11" textAnchor="middle" fill="hsl(var(--muted-foreground))" className="tabular-nums">
-                  {d.year}
-                </text>
-              ))}
+              {data.filter((_, i) => i % 3 === 0).map((d) => {
+                const isFirst = d.year === minYear
+                return (
+                  <text
+                    key={d.year}
+                    x={isFirst ? PAD.left : x(d.year)}
+                    y={H - 6}
+                    fontSize="20"
+                    textAnchor={isFirst ? 'start' : 'middle'}
+                    fill="hsl(var(--muted-foreground))"
+                    className="tabular-nums"
+                  >
+                    {d.year}
+                  </text>
+                )
+              })}
             </svg>
 
             <p className="text-xs text-muted-foreground/70 mt-4 leading-relaxed">

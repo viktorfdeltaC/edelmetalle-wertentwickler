@@ -40,8 +40,8 @@ export default function PhysicalGold() {
   return (
     <section className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* Text */}
-        <div className="order-2 lg:order-1">
+        {/* Text — first on mobile (heading above the media), left on desktop */}
+        <div>
           <motion.span {...fadeUp(0)} className="block text-primary text-xs font-medium tracking-[0.15em] uppercase">
             Physischer Sachwert
           </motion.span>
@@ -79,7 +79,7 @@ export default function PhysicalGold() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative order-1 lg:order-2"
+          className="relative"
         >
           <div
             className="absolute inset-0 pointer-events-none"

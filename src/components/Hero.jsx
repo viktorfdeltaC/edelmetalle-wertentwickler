@@ -109,7 +109,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <h1 className="text-white text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-[-0.035em] leading-[0.98] mb-8">
+        <h1 className="text-white text-[2.5rem] sm:text-6xl lg:text-8xl font-semibold tracking-[-0.035em] leading-[1.02] sm:leading-[0.98] mb-8">
           <span className="block"><Words text="Schützen Sie Ihr Vermögen." /></span>
           <span className="block text-[#E2C97E]"><Words text="Für Generationen." /></span>
         </h1>
