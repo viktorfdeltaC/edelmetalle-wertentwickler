@@ -14,7 +14,10 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        // Display-Stack im Apple-Stil: echtes SF Pro Display auf Apple-Geräten,
+        // sonst Inter. (Schlüssel "serif" beibehalten, damit bestehende
+        // font-serif-Überschriften ohne Komponenten-Änderung umschalten.)
+        serif: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

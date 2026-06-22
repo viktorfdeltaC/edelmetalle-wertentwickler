@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 
+// Eigene, kräftigere Edelmetall-Icons (duotone, currentColor → text-primary)
 const reasons = [
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      <svg className="w-6 h-6" viewBox="0 0 24 24">
+        <path fill="currentColor" fillOpacity="0.18" d="M12 2.4l7.5 2.8v6.2c0 4.8-3.3 8-7.5 9.4-4.2-1.4-7.5-4.6-7.5-9.4V5.2L12 2.4z" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" d="M12 2.4l7.5 2.8v6.2c0 4.8-3.3 8-7.5 9.4-4.2-1.4-7.5-4.6-7.5-9.4V5.2L12 2.4z" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" d="M8.7 12.1l2.4 2.4 4.3-4.6" />
       </svg>
     ),
     title: 'Krisenresistenz',
@@ -13,8 +15,11 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      <svg className="w-6 h-6" viewBox="0 0 24 24">
+        <rect x="3" y="13.5" width="4" height="7.5" rx="1" fill="currentColor" fillOpacity="0.35" />
+        <rect x="10" y="9.5" width="4" height="11.5" rx="1" fill="currentColor" fillOpacity="0.6" />
+        <rect x="17" y="4.5" width="4" height="16.5" rx="1" fill="currentColor" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M3 9.5l5.5-4 4 2.5 6-5" />
       </svg>
     ),
     title: 'Schutz vor Inflation',
@@ -22,8 +27,11 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      <svg className="w-6 h-6" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="7" rx="7.5" ry="3" fill="currentColor" fillOpacity="0.35" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" d="M4.5 7v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V7" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" d="M4.5 12v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-5" />
+        <ellipse cx="12" cy="7" rx="7.5" ry="3" fill="none" stroke="currentColor" strokeWidth="1.6" />
       </svg>
     ),
     title: 'Physischer Besitz',
@@ -31,8 +39,10 @@ const reasons = [
   },
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg className="w-6 h-6" viewBox="0 0 24 24">
+        <path fill="currentColor" fillOpacity="0.3" d="M12 3l9 4.5H3z" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M12 3l9 4.5H3z" />
+        <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" d="M3.5 9.5h17M4 20.5h16M7 10v9.5M12 10v9.5M17 10v9.5" />
       </svg>
     ),
     title: 'Bewährte Wertstabilität',

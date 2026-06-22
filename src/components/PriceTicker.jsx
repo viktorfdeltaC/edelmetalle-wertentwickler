@@ -8,6 +8,7 @@ export default function PriceTicker() {
   const [gold, setGold] = useState(null)
   const [silver, setSilver] = useState(null)
   const [error, setError] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -27,10 +28,20 @@ export default function PriceTicker() {
     fetchPrices()
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const isLive = gold && silver && !error
 
   return (
-    <div className="fixed z-40 left-0 right-0 top-14 md:top-16 bg-card/80 backdrop-blur-md border-b border-border h-9 flex items-center justify-center">
+    <div
+      className={`fixed z-40 left-0 right-0 top-14 md:top-16 h-9 flex items-center justify-center border-b transition-colors duration-300 ${
+        scrolled ? 'bg-card/80 backdrop-blur-md border-border' : 'bg-transparent border-transparent'
+      }`}
+    >
       {error ? (
         <span className="text-xs text-muted-foreground">Kurse momentan nicht verfügbar</span>
       ) : !gold || !silver ? (
@@ -56,7 +67,7 @@ const PriceItem = memo(function PriceItem({ label, price }) {
   return (
     <span className="flex items-center gap-1.5">
       <span className="text-muted-foreground">{label}</span>
-      <span className="text-foreground font-medium">{formatPrice(price)} €/oz</span>
+      <span className="font-medium text-foreground">{formatPrice(price)} €/oz</span>
     </span>
   )
 })

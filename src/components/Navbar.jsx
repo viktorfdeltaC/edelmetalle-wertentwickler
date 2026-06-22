@@ -47,10 +47,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // "solid" = themed bar background once scrolled / menu open; transparent at the top.
+  const solid = scrolled || mobileOpen
+  const linkClass = 'text-muted-foreground hover:text-foreground'
+  const iconClass = 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
-        scrolled ? 'bg-background/85 backdrop-blur-xl border-border' : 'bg-background/60 border-transparent'
+        solid ? 'bg-background/85 backdrop-blur-xl border-border' : 'bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,7 +71,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-200"
+                className={`text-sm transition-colors duration-200 ${linkClass}`}
               >
                 {link.label}
               </a>
@@ -78,7 +83,7 @@ export default function Navbar() {
             <button
               onClick={toggle}
               aria-label={theme === 'dark' ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln'}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+              className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${iconClass}`}
             >
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
@@ -92,7 +97,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+              className={`lg:hidden w-9 h-9 rounded-full flex items-center justify-center transition-colors ${iconClass}`}
               aria-label="Menü öffnen"
             >
               {mobileOpen ? (
