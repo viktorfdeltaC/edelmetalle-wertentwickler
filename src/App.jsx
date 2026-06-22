@@ -7,6 +7,8 @@ import WhyPreciousMetals from './components/WhyPreciousMetals'
 import GoldPerformance from './components/GoldPerformance'
 import GoldBand from './components/GoldBand'
 import HowItWorks from './components/HowItWorks'
+import UseCases from './components/UseCases'
+import FAQ from './components/FAQ'
 import AboutUs from './components/AboutUs'
 import CTASection from './components/CTASection'
 import Finanzdienstleister from './components/Finanzdienstleister'
@@ -26,6 +28,8 @@ export default function App() {
         <GoldPerformance />
         <GoldBand />
         <HowItWorks />
+        <UseCases />
+        <FAQ />
         <AboutUs />
         <CTASection />
         <Finanzdienstleister />
