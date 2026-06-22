@@ -14,7 +14,7 @@ const benefits = [
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 1v8m0 0v1m9-5a9 9 0 11-18 0 9 9 0 0118 0z" />
     ),
     title: 'Attraktive Vergütung',
-    text: 'Für jede erfolgreiche Vermittlung erhalten Sie eine transparente Provision — übersichtlich abgerechnet in Ihrem Dashboard.',
+    text: 'Für jede erfolgreiche Vermittlung erhalten Sie eine transparente Provision, übersichtlich abgerechnet in Ihrem Dashboard.',
   },
   {
     icon: (
@@ -55,7 +55,7 @@ export default function Finanzdienstleister() {
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               Als Finanzdienstleister, Makler oder Berater bieten Sie Ihren Mandanten einen
-              krisensicheren Sachwert — ohne selbst zu beraten, zu verkaufen oder Verträge
+              krisensicheren Sachwert, ohne selbst zu beraten, zu verkaufen oder Verträge
               abzuschließen. Sie empfehlen, den Rest übernehmen wir.
             </p>
             <a

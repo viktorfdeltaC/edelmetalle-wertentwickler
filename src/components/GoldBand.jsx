@@ -46,7 +46,7 @@ export default function GoldBand() {
           5.000 Jahre <span className="text-[#E2C97E]">Wertspeicher.</span>
         </h2>
         <p className="text-white/75 text-lg leading-relaxed mt-5 max-w-xl mx-auto">
-          Gold überdauert, was Währungen nicht überstehen — Krisen, Reformen, Jahrhunderte.
+          Gold überdauert, was Währungen nicht überstehen: Krisen, Reformen, Jahrhunderte.
         </p>
       </motion.div>
     </section>

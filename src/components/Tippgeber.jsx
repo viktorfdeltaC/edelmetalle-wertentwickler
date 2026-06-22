@@ -22,7 +22,7 @@ const steps = [
   {
     number: '03',
     title: 'Vergütung erhalten',
-    text: 'Für jede erfolgreiche Empfehlung werden Sie vergütet — transparent und zuverlässig.',
+    text: 'Für jede erfolgreiche Empfehlung werden Sie vergütet. Transparent und zuverlässig.',
   },
 ]
 
@@ -40,7 +40,7 @@ export default function Tippgeber() {
           <p className="max-w-2xl mx-auto text-muted-foreground text-lg leading-relaxed">
             Sie müssen kein Profi sein. Kennen Sie jemanden, der sein Vermögen schützen möchte?
             Empfehlen Sie Wertentwickler weiter und erhalten Sie für jede erfolgreiche Empfehlung
-            eine Vergütung — ganz ohne selbst zu beraten oder zu verkaufen.
+            eine Vergütung, ganz ohne selbst zu beraten oder zu verkaufen.
           </p>
         </motion.div>
 

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import orbitVideo from '../assets/gold-orbit.mp4'
 import orbitPoster from '../assets/gold-orbit.webp'
 
-const facts = ['Echtes Bruchteilseigentum', 'Versichert in der Schweiz', 'Jederzeit lieferbar — ab 1 g Gold']
+const facts = ['Echtes Bruchteilseigentum', 'Versichert in der Schweiz', 'Jederzeit lieferbar ab 1 g Gold']
 
 function Check({ className }) {
   return (
@@ -61,7 +61,7 @@ export default function GoldSequence() {
             Gold, das Ihnen <span className="text-primary">wirklich gehört.</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-            Kein Zertifikat, kein bloßes Versprechen — echtes physisches Eigentum.
+            Kein Zertifikat, kein bloßes Versprechen, sondern echtes physisches Eigentum.
             Verwahrt, versichert und jederzeit für Sie verfügbar.
           </p>
 
@@ -121,7 +121,7 @@ export default function GoldSequence() {
             <span className="block">wirklich gehört.</span>
           </h2>
           <p className="text-white/75 text-lg leading-relaxed mt-5 max-w-xl mx-auto">
-            Kein Zertifikat, kein bloßes Versprechen — echtes physisches Eigentum.
+            Kein Zertifikat, kein bloßes Versprechen, sondern echtes physisches Eigentum.
             Verwahrt, versichert und jederzeit für Sie verfügbar.
           </p>
         </motion.div>

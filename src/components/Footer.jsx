@@ -11,8 +11,8 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <a href="#" className="block">
-              <img src={logoLight} alt="Edelmetalle Wertentwickler" className="h-10 w-auto dark:hidden" />
-              <img src={logoDark} alt="Edelmetalle Wertentwickler" className="h-10 w-auto hidden dark:block" />
+              <img src={logoLight} alt="Wertentwickler Edelmetalle" className="h-10 w-auto dark:hidden" />
+              <img src={logoDark} alt="Wertentwickler Edelmetalle" className="h-10 w-auto hidden dark:block" />
             </a>
             <p className="text-muted-foreground text-xs max-w-[220px] text-center md:text-left leading-relaxed">
               Physisches Gold und Silber für langfristigen Vermögenserhalt.
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <div className="text-muted-foreground text-xs text-center md:text-right leading-relaxed">
-            <p>© {year} Edelmetalle Wertentwickler</p>
+            <p>© {year} Wertentwickler Edelmetalle</p>
             <p className="mt-1 text-muted-foreground/60">edelmetalle-wertentwickler.de</p>
           </div>
         </div>

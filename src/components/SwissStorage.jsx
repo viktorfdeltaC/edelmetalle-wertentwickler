@@ -72,7 +72,7 @@ export default function SwissStorage() {
           </motion.h2>
           <motion.p {...fadeUp(0.12)} className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-md">
             Ihre Edelmetalle lagern im Hochsicherheitslager der Secure Swiss Storage AG im Zollfreilager
-            bei Zürich — getrennt vom Vermögen jeder Bank und auf Ihren Namen testiert.
+            bei Zürich. Getrennt vom Vermögen jeder Bank und auf Ihren Namen testiert.
           </motion.p>
 
           <motion.ul {...fadeUp(0.18)} className="space-y-3">

@@ -17,7 +17,7 @@ const silverData = [
 
 const W = 760
 const H = 300
-const PAD = { top: 24, right: 14, bottom: 30, left: 14 }
+const PAD = { top: 24, right: 82, bottom: 30, left: 14 }
 const Y_MAX = 900 // Prozent
 const GOLD_BASE = goldData[0].value
 const SILVER_BASE = silverData[0].value
@@ -210,7 +210,7 @@ export default function GoldPerformance() {
                 />
               </div>
               <p className="text-xs text-muted-foreground/70 mt-4 leading-relaxed">
-                Bargeld verliert durch Inflation an Kaufkraft — Gold hat real zugelegt. Werte illustrativ.
+                Bargeld verliert durch Inflation an Kaufkraft. Gold hat real zugelegt. Werte illustrativ.
               </p>
             </div>
           </motion.div>
@@ -275,13 +275,13 @@ export default function GoldPerformance() {
               <path d={goldLinePath} fill="none" stroke="url(#goldLine)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" filter="url(#lineGlow)" opacity="0.45" style={drawGold} />
               <path d={goldLinePath} fill="none" stroke="url(#goldLine)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={drawGold} />
 
-              {/* End-Labels */}
+              {/* End-Punkte + Endwerte rechts daneben */}
               <g style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s ease 1.4s' }}>
-                <text x={goldLast.x} y={goldLast.y - 16} fontSize="22" fontWeight="600" textAnchor="end" fill="hsl(var(--primary))" className="tabular-nums">+{gain} %</text>
                 <circle cx={goldLast.x} cy={goldLast.y} r="9" fill="hsl(var(--primary))" opacity="0.25" filter="url(#lineGlow)" />
                 <circle cx={goldLast.x} cy={goldLast.y} r="5.5" fill="#F6DD93" stroke="hsl(var(--card))" strokeWidth="2.5" />
-                <text x={silverLast.x} y={silverLast.y + 26} fontSize="19" fontWeight="600" textAnchor="end" fill="#9aa3ad" className="tabular-nums">+{silverGain} %</text>
                 <circle cx={silverLast.x} cy={silverLast.y} r="4.5" fill="#C3CAD4" stroke="hsl(var(--card))" strokeWidth="2" />
+                <text x={goldLast.x + 12} y={goldLast.y + 6} fontSize="21" fontWeight="700" textAnchor="start" fill="hsl(var(--primary))" className="tabular-nums">+{gain} %</text>
+                <text x={silverLast.x + 12} y={silverLast.y + 6} fontSize="19" fontWeight="600" textAnchor="start" fill="#9aa3ad" className="tabular-nums">+{silverGain} %</text>
               </g>
 
               {/* Hover-Tooltip (Desktop) */}

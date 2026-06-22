@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
           <a href="#" className="flex-shrink-0">
-            <img src={lightBg ? logoLight : logoDark} alt="Edelmetalle Wertentwickler" className="h-11 w-auto" />
+            <img src={lightBg ? logoLight : logoDark} alt="Wertentwickler Edelmetalle" className="h-11 w-auto" />
           </a>
 
           {/* Desktop nav links */}

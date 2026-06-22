@@ -88,7 +88,7 @@ export default function AboutUs() {
             und erhalten möchten.
           </p>
           <p>
-            Wir verstehen uns nicht als Verkäufer, sondern als Berater. Ohne Druck, ohne versteckte Interessen —
+            Wir verstehen uns nicht als Verkäufer, sondern als Berater. Ohne Druck, ohne versteckte Interessen,
             mit dem Ziel, Ihnen fundierte Entscheidungen für Ihre finanzielle Zukunft zu ermöglichen.
           </p>
         </motion.div>
@@ -113,7 +113,7 @@ export default function AboutUs() {
           „Wir beraten Sie so, wie wir es für unsere eigene Familie tun würden."
         </blockquote>
         <p className="mt-5 text-sm text-primary tracking-[0.1em] uppercase">
-          Das Edelmetalle-Wertentwickler-Team
+          Das Wertentwickler-Edelmetalle-Team
         </p>
       </motion.div>
     </section>
