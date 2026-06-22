@@ -10,6 +10,7 @@ import HowItWorks from './components/HowItWorks'
 import UseCases from './components/UseCases'
 import FAQ from './components/FAQ'
 import AboutUs from './components/AboutUs'
+import VideoFeature from './components/VideoFeature'
 import CTASection from './components/CTASection'
 import Finanzdienstleister from './components/Finanzdienstleister'
 import Tippgeber from './components/Tippgeber'
@@ -31,6 +32,7 @@ export default function App() {
         <UseCases />
         <FAQ />
         <AboutUs />
+        <VideoFeature />
         <CTASection />
         <Finanzdienstleister />
         <Tippgeber />

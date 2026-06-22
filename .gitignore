@@ -2,3 +2,6 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# 4K-Master des Cinema-Videos (lokal als Backup, Web nutzt edelvideo-web.mp4)
+src/assets/Edelvideo.mp4
