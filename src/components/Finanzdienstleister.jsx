@@ -21,7 +21,7 @@ const benefits = [
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
     ),
     title: 'Kein Aufwand, kein Risiko',
-    text: 'Beratung, Vertragsabschluss und Verwahrung übernehmen Wertentwickler und MIDA. Sie geben nur Ihren persönlichen Link weiter.',
+    text: 'Beratung, Abwicklung und Verwahrung übernehmen Wertentwickler, der Edelmetallhändler MIDA und der Verwahrer Secure Swiss Storage. Sie geben nur Ihren persönlichen Link weiter.',
   },
   {
     icon: (
@@ -35,7 +35,7 @@ const benefits = [
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-7 8h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
     ),
     title: 'Rechtssicher & seriös',
-    text: 'Abwicklung über Wertentwickler als Handelsvertreter (§84 HGB) und MIDA als Verwahrer in der Schweiz. Compliance-konform, ganz ohne eigene Beratungspflicht.',
+    text: 'Abwicklung über Wertentwickler als Handelsvertreter (§84 HGB) und den Edelmetallhändler MIDA, verwahrt bei Secure Swiss Storage in der Schweiz. Compliance-konform, ganz ohne eigene Beratungspflicht.',
   },
 ]
 
@@ -55,7 +55,7 @@ export default function Finanzdienstleister() {
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               Als Finanzdienstleister, Makler oder Berater bieten Sie Ihren Mandanten einen
-              krisensicheren Sachwert, ohne selbst zu beraten, zu verkaufen oder Verträge
+              bewährten Sachwert, ohne selbst zu beraten, zu verkaufen oder Verträge
               abzuschließen. Sie empfehlen, den Rest übernehmen wir.
             </p>
             <a

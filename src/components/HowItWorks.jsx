@@ -17,7 +17,7 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Sicheres Investment',
+    title: 'Sicherer Erwerb',
     description:
       'Sie erwerben Ihr Edelmetall zu fairen, transparenten Konditionen und entscheiden selbst über Verwahrung oder physische Lieferung. Wir begleiten Sie langfristig.',
     badge: 'Fair & Zuverlässig',

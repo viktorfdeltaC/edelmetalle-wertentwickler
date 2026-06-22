@@ -11,7 +11,7 @@ const reasons = [
       </svg>
     ),
     title: 'Krisenresistenz',
-    text: 'Edelmetalle haben Kriege, Währungsreformen und Börsencrashs überstanden. Gold ist die einzige Anlageform, die über Jahrtausende hinweg ihren Wert bewahrt hat. Vollständig unabhängig von Staaten oder Banken.',
+    text: 'Edelmetalle haben Kriege, Währungsreformen und Börsencrashs überstanden. Gold zählt zu den wenigen Anlageformen, die über Jahrtausende hinweg ihren Wert bewahrt haben. Vollständig unabhängig von Staaten oder Banken.',
   },
   {
     icon: (
@@ -23,7 +23,7 @@ const reasons = [
       </svg>
     ),
     title: 'Schutz vor Inflation',
-    text: 'Während Papiergeld durch Inflation schleichend entwertet wird, behält physisches Gold seine Kaufkraft. Historisch hat Gold die Inflation langfristig stets kompensiert. Und oft übertroffen.',
+    text: 'Während Papiergeld durch Inflation schleichend entwertet wird, behält physisches Gold seine Kaufkraft. Historisch hat Gold die Inflation über lange Zeiträume ausgeglichen. Und oft übertroffen.',
   },
   {
     icon: (
@@ -77,7 +77,7 @@ export default function WhyPreciousMetals() {
             <span className="text-primary"> Edelmetalle</span> setzen
           </h2>
           <p className="max-w-xl mx-auto text-muted-foreground text-lg leading-relaxed">
-            Gold und Silber sind die einzigen Anlageformen, die keine Gegenpartei brauchen. Kein Institut, das pleite gehen kann. Kein Vertrag, der sich ändert. Nur physischer Wert.
+            Gold und Silber sind Sachwerte ohne Gegenpartei. Kein Institut, das pleite gehen kann. Kein Vertrag, der sich ändert. Nur physischer Wert.
           </p>
         </motion.div>
 

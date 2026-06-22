@@ -11,7 +11,7 @@ const fadeUp = (delay = 0) => ({
 })
 
 const facts = [
-  'Secure Swiss Storage AG · Zollfreilager bei Zürich',
+  'Secure Swiss Storage AG · Schweiz',
   'Vollständig versichert',
   'Halbjährlich durch einen unabhängigen Wirtschaftsprüfer geprüft',
 ]
@@ -73,8 +73,8 @@ export default function SwissStorage() {
             <span className="block text-primary">In der Schweiz.</span>
           </motion.h2>
           <motion.p {...fadeUp(0.12)} className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-md">
-            Ihre Edelmetalle lagern im Hochsicherheitslager der Secure Swiss Storage AG im Zollfreilager
-            bei Zürich. Getrennt vom Vermögen jeder Bank und auf Ihren Namen testiert.
+            Ihre Edelmetalle lagern im Schweizer Hochsicherheitslager der Secure Swiss Storage AG.
+            Getrennt vom Vermögen jeder Bank und auf Ihren Namen testiert.
           </motion.p>
 
           <motion.ul {...fadeUp(0.18)} className="space-y-3">

@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 
 const stats = [
   { label: 'Jahre Erfahrung im Edelmetallmarkt', target: 15, suffix: '+' },
-  { label: 'Privatanleger erfolgreich beraten', target: 500, suffix: '+' },
-  { label: 'Unabhängig & herstellerneutral', target: 100, suffix: '%' },
+  { label: 'Privatanleger erfolgreich beraten', target: 300, suffix: '+' },
+  { label: 'Physisches Eigentum', target: 100, suffix: '%' },
 ]
 
 function useCountUp(target, duration = 1500) {
@@ -84,7 +84,7 @@ export default function AboutUs() {
         >
           <p>
             Wir sind ein unabhängiger Anbieter für physische Edelmetallinvestments mit Sitz in Deutschland.
-            Unser Team berät seit über einem Jahrzehnt Privatanleger, die ihr Vermögen langfristig schützen
+            Unser Team berät seit über 15 Jahren Privatanleger, die ihr Vermögen langfristig schützen
             und erhalten möchten.
           </p>
           <p>

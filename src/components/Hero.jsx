@@ -115,7 +115,7 @@ export default function Hero() {
         </h1>
 
         <motion.p variants={rise} className="max-w-2xl mx-auto text-white/75 text-xl leading-relaxed mb-10">
-          Physisches Gold und Silber sind krisensicher, inflationsgeschützt und vollständig
+          Physisches Gold und Silber sind in Krisen bewährt, inflationsresistent und vollständig
           unabhängig von Staaten und Banken.
         </motion.p>
 
