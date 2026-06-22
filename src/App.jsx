@@ -5,6 +5,8 @@ import WhyPreciousMetals from './components/WhyPreciousMetals'
 import HowItWorks from './components/HowItWorks'
 import AboutUs from './components/AboutUs'
 import CTASection from './components/CTASection'
+import Finanzdienstleister from './components/Finanzdienstleister'
+import Tippgeber from './components/Tippgeber'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -18,6 +20,8 @@ export default function App() {
         <HowItWorks />
         <AboutUs />
         <CTASection />
+        <Finanzdienstleister />
+        <Tippgeber />
       </main>
       <Footer />
     </div>

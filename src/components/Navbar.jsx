@@ -31,6 +31,8 @@ const navLinks = [
   { label: 'Warum Edelmetalle', href: '#warum' },
   { label: 'So funktioniert es', href: '#prozess' },
   { label: 'Über uns', href: '#ueber-uns' },
+  { label: 'Finanzdienstleister', href: '#finanzdienstleister' },
+  { label: 'Tippgeber', href: '#tippgeber' },
 ]
 
 export default function Navbar() {
@@ -59,7 +61,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -90,7 +92,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+              className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
               aria-label="Menü öffnen"
             >
               {mobileOpen ? (
@@ -108,7 +110,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border py-5 space-y-1">
+          <div className="lg:hidden border-t border-border py-5 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
