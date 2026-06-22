@@ -1,5 +1,7 @@
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import vault from '../assets/vault.webp'
+import vaultVideo from '../assets/vault.mp4'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -15,6 +17,24 @@ const facts = [
 ]
 
 export default function SwissStorage() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.muted = true
+    v.playsInline = true
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => {})
+        else v.pause()
+      },
+      { threshold: 0.25 }
+    )
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+
   return (
     <section className="bg-secondary/30 py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -27,14 +47,16 @@ export default function SwissStorage() {
           className="relative"
         >
           <div className="relative rounded-3xl overflow-hidden ring-1 ring-border shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)]">
-            <motion.img
-              src={vault}
-              alt="Hochsicherheitslager in der Schweiz"
-              className="w-full aspect-[4/5] object-cover"
-              loading="lazy"
-              decoding="async"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+            <video
+              ref={videoRef}
+              className="w-full aspect-[3/4] object-cover"
+              src={vaultVideo}
+              poster={vault}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Hochsicherheitslager in der Schweiz"
             />
           </div>
         </motion.div>

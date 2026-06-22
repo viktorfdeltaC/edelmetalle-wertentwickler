@@ -47,10 +47,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // "solid" = themed bar background once scrolled / menu open; transparent at the top.
+  // "solid" = themed bar once scrolled / menu open; transparent with light text over the dark hero stage.
   const solid = scrolled || mobileOpen
-  const linkClass = 'text-muted-foreground hover:text-foreground'
-  const iconClass = 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+  const linkClass = solid
+    ? 'text-muted-foreground hover:text-foreground'
+    : 'text-white/80 hover:text-white'
+  const iconClass = solid
+    ? 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+    : 'text-white/80 hover:text-white hover:bg-white/10'
 
   return (
     <nav

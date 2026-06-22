@@ -43,16 +43,16 @@ export default function PriceTicker() {
       }`}
     >
       {error ? (
-        <span className="text-xs text-muted-foreground">Kurse momentan nicht verfügbar</span>
+        <span className={`text-xs ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>Kurse momentan nicht verfügbar</span>
       ) : !gold || !silver ? (
-        <span className="text-xs text-muted-foreground animate-pulse">Kurse werden geladen …</span>
+        <span className={`text-xs animate-pulse ${scrolled ? 'text-muted-foreground' : 'text-white/50'}`}>Kurse werden geladen …</span>
       ) : (
         <div className="flex items-center gap-6 sm:gap-10 text-xs tabular-nums">
-          <PriceItem label="Gold" price={gold} />
-          <span className="w-px h-3.5 bg-border" />
-          <PriceItem label="Silber" price={silver} />
+          <PriceItem label="Gold" price={gold} scrolled={scrolled} />
+          <span className={`w-px h-3.5 ${scrolled ? 'bg-border' : 'bg-white/20'}`} />
+          <PriceItem label="Silber" price={silver} scrolled={scrolled} />
           {isLive && (
-            <span className="hidden sm:flex items-center gap-1.5 text-muted-foreground">
+            <span className={`hidden sm:flex items-center gap-1.5 ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Live
             </span>
@@ -63,11 +63,11 @@ export default function PriceTicker() {
   )
 }
 
-const PriceItem = memo(function PriceItem({ label, price }) {
+const PriceItem = memo(function PriceItem({ label, price, scrolled }) {
   return (
     <span className="flex items-center gap-1.5">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-medium text-foreground">{formatPrice(price)} €/oz</span>
+      <span className={scrolled ? 'text-muted-foreground' : 'text-white/60'}>{label}</span>
+      <span className={`font-medium ${scrolled ? 'text-foreground' : 'text-white'}`}>{formatPrice(price)} €/oz</span>
     </span>
   )
 })

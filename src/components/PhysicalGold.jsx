@@ -1,5 +1,7 @@
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import goldBar from '../assets/goldbar.webp'
+import goldVideo from '../assets/goldbar.mp4'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -15,6 +17,26 @@ const facts = [
 ]
 
 export default function PhysicalGold() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    // React setzt das muted-Attribut nicht zuverlässig als DOM-Property →
+    // Safari blockiert sonst den (stummen) Autoplay. Hier explizit setzen.
+    v.muted = true
+    v.playsInline = true
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => {})
+        else v.pause()
+      },
+      { threshold: 0.25 }
+    )
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+
   return (
     <section className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -64,26 +86,16 @@ export default function PhysicalGold() {
             style={{ background: 'radial-gradient(60% 50% at 50% 50%, hsl(var(--primary) / 0.16) 0%, transparent 70%)' }}
           />
           <div className="relative rounded-3xl overflow-hidden ring-1 ring-border shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)]">
-            <motion.img
-              src={goldBar}
-              alt="Physischer 999.9 Feingold-Barren"
-              className="w-full aspect-[4/5] object-cover"
-              loading="lazy"
-              decoding="async"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            {/* Light sweep — softes Licht wandert langsam über das Gold */}
-            <motion.div
-              aria-hidden="true"
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'linear-gradient(105deg, transparent 38%, rgba(255,255,255,0.22) 50%, transparent 62%)',
-                mixBlendMode: 'soft-light',
-              }}
-              initial={{ x: '-130%' }}
-              animate={{ x: '130%' }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2.5 }}
+            <video
+              ref={videoRef}
+              className="w-full aspect-[3/4] object-cover"
+              src={goldVideo}
+              poster={goldBar}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Physischer 999.9 Feingold-Barren"
             />
           </div>
         </motion.div>
