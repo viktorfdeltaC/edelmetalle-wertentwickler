@@ -33,9 +33,41 @@ export default function Hero() {
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
+    // Safari ist beim (stummen) Autoplay streng — muted/playsinline hart setzen.
     v.muted = true
+    v.defaultMuted = true
+    v.setAttribute('muted', '')
     v.playsInline = true
-    v.play().catch(() => {})
+    v.setAttribute('playsinline', '')
+
+    const tryPlay = () => v.play().catch(() => {})
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tryPlay()
+        else v.pause()
+      },
+      { threshold: 0.1 }
+    )
+    io.observe(v)
+    v.addEventListener('canplay', tryPlay)
+    v.addEventListener('loadeddata', tryPlay)
+
+    // Fallback: falls Safari den Autoplay blockt (z. B. Energiesparmodus),
+    // beim ersten Nutzer-Input starten.
+    const gestures = ['pointerdown', 'touchstart', 'keydown', 'scroll']
+    const onGesture = () => {
+      tryPlay()
+      gestures.forEach((ev) => window.removeEventListener(ev, onGesture))
+    }
+    gestures.forEach((ev) => window.addEventListener(ev, onGesture, { passive: true }))
+
+    return () => {
+      io.disconnect()
+      v.removeEventListener('canplay', tryPlay)
+      v.removeEventListener('loadeddata', tryPlay)
+      gestures.forEach((ev) => window.removeEventListener(ev, onGesture))
+    }
   }, [])
 
   return (
