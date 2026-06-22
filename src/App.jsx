@@ -1,10 +1,11 @@
 import Navbar from './components/Navbar'
 import PriceTicker from './components/PriceTicker'
 import Hero from './components/Hero'
-import PhysicalGold from './components/PhysicalGold'
+import GoldSequence from './components/GoldSequence'
 import SwissStorage from './components/SwissStorage'
 import WhyPreciousMetals from './components/WhyPreciousMetals'
 import GoldPerformance from './components/GoldPerformance'
+import GoldBand from './components/GoldBand'
 import HowItWorks from './components/HowItWorks'
 import AboutUs from './components/AboutUs'
 import CTASection from './components/CTASection'
@@ -19,10 +20,11 @@ export default function App() {
       <PriceTicker />
       <main>
         <Hero />
-        <PhysicalGold />
+        <GoldSequence />
         <SwissStorage />
         <WhyPreciousMetals />
         <GoldPerformance />
+        <GoldBand />
         <HowItWorks />
         <AboutUs />
         <CTASection />
