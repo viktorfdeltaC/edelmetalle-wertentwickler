@@ -7,6 +7,8 @@ function formatPrice(price) {
 export default function PriceTicker() {
   const [gold, setGold] = useState(null)
   const [silver, setSilver] = useState(null)
+  const [platinum, setPlatinum] = useState(null)
+  const [palladium, setPalladium] = useState(null)
   const [error, setError] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const hasData = useRef(false)
@@ -22,6 +24,9 @@ export default function PriceTicker() {
         if (cancelled) return
         setGold(data.gold)
         setSilver(data.silver)
+        // Platin/Palladium nur setzen, wenn vorhanden (sonst letzten Wert behalten).
+        if (typeof data.platinum === 'number') setPlatinum(data.platinum)
+        if (typeof data.palladium === 'number') setPalladium(data.palladium)
         setError(false)
         hasData.current = true
       } catch {
@@ -60,6 +65,18 @@ export default function PriceTicker() {
           <PriceItem label="Gold" price={gold} scrolled={scrolled} />
           <span className={`w-px h-3.5 ${scrolled ? 'bg-border' : 'bg-white/20'}`} />
           <PriceItem label="Silber" price={silver} scrolled={scrolled} />
+          {platinum != null && (
+            <>
+              <span className={`hidden md:block w-px h-3.5 ${scrolled ? 'bg-border' : 'bg-white/20'}`} />
+              <PriceItem className="hidden md:flex" label="Platin" price={platinum} scrolled={scrolled} />
+            </>
+          )}
+          {palladium != null && (
+            <>
+              <span className={`hidden md:block w-px h-3.5 ${scrolled ? 'bg-border' : 'bg-white/20'}`} />
+              <PriceItem className="hidden md:flex" label="Palladium" price={palladium} scrolled={scrolled} />
+            </>
+          )}
           {isLive && (
             <span className={`hidden sm:flex items-center gap-1.5 ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -72,9 +89,9 @@ export default function PriceTicker() {
   )
 }
 
-const PriceItem = memo(function PriceItem({ label, price, scrolled }) {
+const PriceItem = memo(function PriceItem({ label, price, scrolled, className = '' }) {
   return (
-    <span className="flex items-center gap-1.5">
+    <span className={`flex items-center gap-1.5 ${className}`}>
       <span className={scrolled ? 'text-muted-foreground' : 'text-white/60'}>{label}</span>
       <span className={`font-medium ${scrolled ? 'text-foreground' : 'text-white'}`}>{formatPrice(price)} €/oz</span>
     </span>

@@ -9,14 +9,25 @@ function midPrice(data) {
   return mid > 0 ? mid : null
 }
 
-// Liefert Gold-/Silberkurs in EUR pro Feinunze (troy oz).
+// Liefert Edelmetallkurse in EUR pro Feinunze (troy oz).
+// Gold/Silber gibt es direkt in EUR; Platin/Palladium nur in USD,
+// daher über den EUR/USD-Kurs in EUR umgerechnet (best effort).
 export async function getPrices() {
-  const [goldData, silverData] = await Promise.all([
+  const [goldData, silverData, platUsdData, pallUsdData, eurUsdData] = await Promise.all([
     fetch(`${BASE}/XAU/EUR`).then((r) => r.json()),
     fetch(`${BASE}/XAG/EUR`).then((r) => r.json()),
+    fetch(`${BASE}/XPT/USD`).then((r) => r.json()).catch(() => null),
+    fetch(`${BASE}/XPD/USD`).then((r) => r.json()).catch(() => null),
+    fetch(`${BASE}/EUR/USD`).then((r) => r.json()).catch(() => null),
   ])
   const gold = midPrice(goldData)
   const silver = midPrice(silverData)
   if (gold == null || silver == null) throw new Error('No price data')
-  return { gold, silver, ts: Date.now() }
+
+  const eurUsd = midPrice(eurUsdData) // USD pro 1 EUR
+  const toEur = (usd) => (usd != null && eurUsd ? usd / eurUsd : null)
+  const platinum = toEur(midPrice(platUsdData))
+  const palladium = toEur(midPrice(pallUsdData))
+
+  return { gold, silver, platinum, palladium, ts: Date.now() }
 }
