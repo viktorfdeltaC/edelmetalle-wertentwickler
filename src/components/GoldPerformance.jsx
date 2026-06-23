@@ -126,12 +126,14 @@ function useCountUp(target, active, duration = 1500) {
 
 export default function GoldPerformance() {
   const chartRef = useRef(null)
+  const introRef = useRef(null)
   const [inView, setInView] = useState(false)
+  const [introInView, setIntroInView] = useState(false)
   const [hover, setHover] = useState(null)
   const [coarse] = useState(() => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches)
 
-  const goldPctN = useCountUp(gain, inView)
-  const yearsN = useCountUp(5000, inView)
+  const goldPctN = useCountUp(gain, introInView)
+  const yearsN = useCountUp(5000, introInView)
 
   useEffect(() => {
     const el = chartRef.current
@@ -139,6 +141,17 @@ export default function GoldPerformance() {
     const io = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setInView(true); io.disconnect() } },
       { threshold: 0.3 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = introRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setIntroInView(true); io.disconnect() } },
+      { threshold: 0.2 }
     )
     io.observe(el)
     return () => io.disconnect()
@@ -157,8 +170,8 @@ export default function GoldPerformance() {
     setHover(best)
   }
 
-  const drawGold = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 2.1s cubic-bezier(0.33, 1, 0.68, 1)' }
-  const drawSilver = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 2.1s cubic-bezier(0.33, 1, 0.68, 1) 0.25s' }
+  const drawGold = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 1.5s cubic-bezier(0.33, 1, 0.68, 1)' }
+  const drawSilver = { strokeDasharray: DASH, strokeDashoffset: inView ? 0 : DASH, transition: 'stroke-dashoffset 1.5s cubic-bezier(0.33, 1, 0.68, 1) 0.2s' }
 
   return (
     <section id="wertentwicklung" className="py-24 lg:py-32">
@@ -166,6 +179,7 @@ export default function GoldPerformance() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-center">
           {/* Intro + stats */}
           <motion.div
+            ref={introRef}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -289,7 +303,7 @@ export default function GoldPerformance() {
               <path d={goldLinePath} fill="none" stroke="url(#goldLine)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={drawGold} />
 
               {/* End-Punkte + Endwerte rechts daneben */}
-              <g style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.7s ease 1.9s' }}>
+              <g style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.6s ease 1.05s' }}>
                 <circle cx={goldLast.x} cy={goldLast.y} r="9" fill="hsl(var(--primary))" opacity="0.25" filter="url(#lineGlow)" />
                 <circle cx={goldLast.x} cy={goldLast.y} r="5.5" fill="#F6DD93" stroke="hsl(var(--card))" strokeWidth="2.5" />
                 <circle cx={silverLast.x} cy={silverLast.y} r="4.5" fill="#C3CAD4" stroke="hsl(var(--card))" strokeWidth="2" />
