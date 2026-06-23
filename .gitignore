@@ -5,3 +5,8 @@ dist/
 
 # 4K-Master des Cinema-Videos (lokal als Backup, Web nutzt edelvideo-web.mp4)
 src/assets/Edelvideo.mp4
+
+# Original-Portraitfotos (Web nutzt holger.webp / erik.webp)
+src/assets/Holger.jpg
+src/assets/Erik.png
+src/assets/Viktor.png

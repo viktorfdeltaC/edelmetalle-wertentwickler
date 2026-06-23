@@ -1,10 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import holger from '../assets/holger.webp'
+import erik from '../assets/erik.webp'
+import viktor from '../assets/viktor.webp'
 
 const stats = [
   { label: 'Jahre Erfahrung im Edelmetallmarkt', target: 15, suffix: '+' },
   { label: 'Privatanleger erfolgreich beraten', target: 300, suffix: '+' },
   { label: 'Physisches Eigentum', target: 100, suffix: '%' },
+]
+
+const team = [
+  { alt: 'Holger', img: holger, imgClass: '' },
+  { alt: 'Erik', img: erik, imgClass: 'origin-top scale-[1.15]' },
+  { alt: 'Viktor', img: viktor, imgClass: 'scale-x-[-1]' }, // gespiegelt: alle blicken gleich
 ]
 
 function useCountUp(target, duration = 1500) {
@@ -115,6 +124,32 @@ export default function AboutUs() {
         <p className="mt-5 text-sm text-primary tracking-[0.1em] uppercase">
           Das Wertentwickler-Edelmetalle-Team
         </p>
+      </motion.div>
+
+      {/* Team-Portraits (Platzhalter-Kreise, echte Fotos später) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-14"
+      >
+        <div className="flex justify-center gap-6 sm:gap-12">
+          {team.map((m, i) => (
+            <div
+              key={i}
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-1 ring-border bg-secondary shadow-[0_10px_30px_-12px_rgba(0,0,0,0.4)] flex items-center justify-center"
+            >
+              {m.img ? (
+                <img src={m.img} alt={m.alt} loading="lazy" className={`w-full h-full object-cover object-top ${m.imgClass}`} />
+              ) : (
+                <svg className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground/45" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2.2c-4.4 0-8 2.4-8 5.4V21h16v-1.4c0-3-3.6-5.4-8-5.4z" />
+                </svg>
+              )}
+            </div>
+          ))}
+        </div>
       </motion.div>
     </section>
   )
