@@ -62,8 +62,15 @@ const silverLast = silverPoints[silverPoints.length - 1]
 const DASH = 1400
 const cashValue = 65
 const goldValue = Math.round(100 * (1 + gain / 100)) // 100 € in Gold seit 2000
+const silverValue = Math.round(100 * (1 + silverGain / 100)) // 100 € in Silber seit 2000
 
-function CompareBar({ label, valueText, pct, gold, delay }) {
+const BAR_BG = {
+  cash: 'linear-gradient(90deg, #857B72, #A89C90)',
+  silver: 'linear-gradient(90deg, #8A93A0, #BFC7D1, #E4E8ED)',
+  gold: 'linear-gradient(90deg, #B0832F, #E7C36C, #F6DD93)',
+}
+
+function CompareBar({ label, valueText, pct, tone = 'cash', delay }) {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)
   useEffect(() => {
@@ -76,11 +83,12 @@ function CompareBar({ label, valueText, pct, gold, delay }) {
     io.observe(el)
     return () => io.disconnect()
   }, [])
+  const valueClass = tone === 'gold' ? 'text-primary' : tone === 'silver' ? 'text-[#9aa3ad]' : 'text-foreground'
   return (
     <div ref={ref}>
       <div className="flex items-baseline justify-between mb-1.5">
         <span className="text-sm font-medium">{label}</span>
-        <span className={`text-sm font-semibold tabular-nums ${gold ? 'text-primary' : 'text-foreground'}`}>{valueText}</span>
+        <span className={`text-sm font-semibold tabular-nums ${valueClass}`}>{valueText}</span>
       </div>
       <div className="relative h-3 rounded-full bg-secondary overflow-hidden ring-1 ring-inset ring-border/70 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]">
         <div
@@ -88,9 +96,7 @@ function CompareBar({ label, valueText, pct, gold, delay }) {
           style={{
             width: inView ? `${pct}%` : '0%',
             transition: `width 1.8s cubic-bezier(0.33, 1, 0.68, 1) ${delay}s`,
-            background: gold
-              ? 'linear-gradient(90deg, #B0832F, #E7C36C, #F6DD93)'
-              : 'linear-gradient(90deg, hsl(var(--muted-foreground) / 0.5), hsl(var(--muted-foreground) / 0.85))',
+            background: BAR_BG[tone],
           }}
         >
           <div className="absolute inset-x-0 top-0 h-[45%] rounded-t-full" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.28), transparent)' }} />
@@ -196,21 +202,28 @@ export default function GoldPerformance() {
               <div className="space-y-5">
                 <CompareBar
                   label="Als Bargeld gehalten"
-                  valueText="≈ 65 €"
+                  valueText={`≈ ${cashValue} €`}
                   pct={Math.round((cashValue / goldValue) * 100)}
-                  gold={false}
+                  tone="cash"
                   delay={0.2}
+                />
+                <CompareBar
+                  label="In Silber angelegt"
+                  valueText={`≈ ${silverValue.toLocaleString('de-DE')} €`}
+                  pct={Math.round((silverValue / goldValue) * 100)}
+                  tone="silver"
+                  delay={0.32}
                 />
                 <CompareBar
                   label="In Gold angelegt"
                   valueText={`≈ ${goldValue.toLocaleString('de-DE')} €`}
                   pct={100}
-                  gold
-                  delay={0.38}
+                  tone="gold"
+                  delay={0.44}
                 />
               </div>
               <p className="text-xs text-muted-foreground/70 mt-4 leading-relaxed">
-                Bargeld verliert durch Inflation an Kaufkraft. Gold hat real zugelegt. Werte illustrativ.
+                Bargeld verliert durch Inflation an Kaufkraft. Gold und Silber haben real zugelegt. Werte illustrativ.
               </p>
             </div>
           </motion.div>
