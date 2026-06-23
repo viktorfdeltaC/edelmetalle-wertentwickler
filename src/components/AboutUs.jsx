@@ -83,9 +83,9 @@ export default function AboutUs() {
           className="space-y-5 text-muted-foreground text-lg leading-relaxed text-left sm:text-center"
         >
           <p>
-            Wir sind ein unabhängiger Anbieter für physische Edelmetallinvestments mit Sitz in Deutschland.
-            Unser Team berät seit über 15 Jahren Privatanleger, die ihr Vermögen langfristig schützen
-            und erhalten möchten.
+            Wir sind ein unabhängiger Spezialist für physische Edelmetalle mit Sitz in Deutschland.
+            Seit über 15 Jahren begleiten wir Privatanleger dabei, ihr Vermögen langfristig zu sichern
+            und zu bewahren.
           </p>
           <p>
             Wir verstehen uns nicht als Verkäufer, sondern als Berater. Ohne Druck, ohne versteckte Interessen,
