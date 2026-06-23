@@ -12,7 +12,7 @@ const steps = [
   {
     number: '01',
     title: 'Kostenlos registrieren',
-    text: 'In wenigen Minuten anmelden und die Tippgebervereinbarung digital bestätigen.',
+    text: 'In 60 Sekunden anmelden und die Tippgebervereinbarung digital bestätigen.',
   },
   {
     number: '02',
@@ -73,7 +73,7 @@ export default function Tippgeber() {
             </svg>
           </a>
           <p className="mt-5 text-muted-foreground/70 text-sm">
-            Registrierung in wenigen Minuten · kostenlos & unverbindlich
+            Registrierung in 60 Sekunden · kostenlos & unverbindlich
           </p>
         </motion.div>
       </div>
