@@ -10,10 +10,11 @@ const stats = [
   { label: 'Physisches Eigentum', target: 100, suffix: '%' },
 ]
 
+// name = Vor- und Nachname (erscheint im Hover-Schleier).
 const team = [
-  { alt: 'Holger', img: holger, imgClass: '' },
-  { alt: 'Erik', img: erik, imgClass: 'origin-top scale-[1.15]' },
-  { alt: 'Viktor', img: viktor, imgClass: 'scale-x-[-1]' }, // gespiegelt: alle blicken gleich
+  { name: 'Holger Weller', img: holger, imgClass: '' },
+  { name: 'Erik Eckert', img: erik, imgClass: 'origin-top scale-[1.3]' },
+  { name: 'Viktor Fink', img: viktor, imgClass: 'scale-x-[-1]' }, // gespiegelt: alle blicken gleich
 ]
 
 function useCountUp(target, duration = 1500) {
@@ -126,31 +127,39 @@ export default function AboutUs() {
         </p>
       </motion.div>
 
-      {/* Team-Portraits (Platzhalter-Kreise, echte Fotos später) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-14"
-      >
+      {/* Team-Portraits: Gold-Rand-Medaillons mit gestaffelter Einblendung + Hover */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
         <div className="flex justify-center gap-6 sm:gap-12">
           {team.map((m, i) => (
-            <div
+            <motion.div
               key={i}
-              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-1 ring-border bg-secondary shadow-[0_10px_30px_-12px_rgba(0,0,0,0.4)] flex items-center justify-center"
+              initial={{ opacity: 0, y: 14, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, boxShadow: '0 12px 30px -12px rgba(0,0,0,0.45)' }}
+              whileHover={{ y: -6, scale: 1.05, boxShadow: '0 22px 46px -14px rgba(168,123,43,0.55)' }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: i * 0.12 }}
+              className="group rounded-full p-[2.5px]"
+              style={{ background: 'linear-gradient(140deg, #F4D98B 0%, #E2BB63 40%, #C99B3E 70%, #A87B2B 100%)' }}
             >
-              {m.img ? (
-                <img src={m.img} alt={m.alt} loading="lazy" className={`w-full h-full object-cover object-top ${m.imgClass}`} />
-              ) : (
-                <svg className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground/45" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2.2c-4.4 0-8 2.4-8 5.4V21h16v-1.4c0-3-3.6-5.4-8-5.4z" />
-                </svg>
-              )}
-            </div>
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-secondary flex items-center justify-center">
+                {m.img ? (
+                  <img src={m.img} alt={m.name} loading="lazy" className={`w-full h-full object-cover object-top ${m.imgClass}`} />
+                ) : (
+                  <svg className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground/45" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2.2c-4.4 0-8 2.4-8 5.4V21h16v-1.4c0-3-3.6-5.4-8-5.4z" />
+                  </svg>
+                )}
+                {/* Hover-Schleier mit Name */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/55">
+                  <span className="px-3 text-center text-[11px] sm:text-xs font-medium leading-tight text-white opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                    {m.name}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
