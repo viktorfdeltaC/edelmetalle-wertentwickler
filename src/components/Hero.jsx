@@ -20,7 +20,7 @@ const trust = ['Echtes Bruchteilseigentum', 'Versichert in der Schweiz', 'Steuer
 
 function Words({ text, className = '' }) {
   return text.split(' ').map((w, i) => (
-    <span key={i} className="inline-block overflow-hidden align-bottom">
+    <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.2em] -mb-[0.2em]">
       <motion.span variants={word} className={`inline-block ${className}`}>
         {w}&nbsp;
       </motion.span>
@@ -102,8 +102,7 @@ export default function Hero() {
         animate="visible"
         className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 text-center"
       >
-        <motion.div variants={rise} className="inline-flex items-center gap-2.5 mb-9">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E2C97E]" />
+        <motion.div variants={rise} className="inline-block mb-9">
           <span className="text-[#E2C97E] text-xs font-medium tracking-[0.2em] uppercase">
             Vermögenssicherung mit Substanz
           </span>
