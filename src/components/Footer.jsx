@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import logoDark from '../assets/logo-dark.png'
 import logoLight from '../assets/logo-light.png'
+import LegalModal from './LegalModal'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const [legal, setLegal] = useState(null) // null | 'impressum' | 'datenschutz'
+  const loginUrl = import.meta.env.VITE_EM_LOGIN_URL || 'http://127.0.0.1:8000/edelmetalle/login'
 
   return (
     <footer className="border-t border-border bg-background">
@@ -19,15 +23,23 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Links — Impressum/Datenschutz öffnen als Overlay (LegalModal) */}
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="/impressum" className="hover:text-foreground transition-colors duration-200">
+            <button
+              type="button"
+              onClick={() => setLegal('impressum')}
+              className="cursor-pointer hover:text-foreground transition-colors duration-200"
+            >
               Impressum
-            </a>
+            </button>
             <span className="text-border">·</span>
-            <a href="/datenschutz" className="hover:text-foreground transition-colors duration-200">
+            <button
+              type="button"
+              onClick={() => setLegal('datenschutz')}
+              className="cursor-pointer hover:text-foreground transition-colors duration-200"
+            >
               Datenschutz
-            </a>
+            </button>
             <span className="text-border">·</span>
             <a href="#kontakt" className="hover:text-foreground transition-colors duration-200">
               Kontakt
@@ -35,9 +47,22 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-muted-foreground text-xs text-center md:text-right leading-relaxed">
+          <div className="flex flex-col text-muted-foreground text-xs text-center md:text-right leading-relaxed md:self-stretch">
             <p>© {year} Wertentwickler Edelmetalle</p>
             <p className="mt-1 text-muted-foreground/60">edelmetalle-wertentwickler.de</p>
+            {/* Unscheinbarer Login-Link ins Edelmetall-Backend (umgebungsabhängig via VITE_EM_LOGIN_URL).
+                md:mt-auto schiebt ihn auf Desktop ans untere Ende der Spalte → bündig mit der Tagline links. */}
+            <a
+              href={loginUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 md:mt-auto flex items-center justify-center md:justify-end gap-1.5 text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-200"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
+              </svg>
+              Login
+            </a>
           </div>
         </div>
 
@@ -50,6 +75,8 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      <LegalModal type={legal} onClose={() => setLegal(null)} />
     </footer>
   )
 }
