@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useBooking } from '../context/BookingContext'
 
 const bullets = [
   'Persönliche Beratung auf Augenhöhe',
@@ -7,6 +8,7 @@ const bullets = [
 ]
 
 export default function CTASection() {
+  const { openBooking } = useBooking()
   return (
     <section id="kontakt" className="py-24 lg:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,15 +60,15 @@ export default function CTASection() {
                   Es könnte das Wichtigste sein, was Sie heute für Ihr Vermögen tun.
                 </p>
 
-                <a
-                  href="#kontakt-formular"
+                <button
+                  onClick={openBooking}
                   className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-primary text-primary-foreground text-base font-medium shadow-[0_10px_30px_-6px_hsl(var(--primary)/0.5)] hover:-translate-y-px hover:brightness-110 transition-all duration-200"
                 >
                   Jetzt Gespräch buchen
                   <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </button>
 
                 <p className="mt-5 text-muted-foreground/70 text-sm">
                   Keine Verpflichtungen · Keine versteckten Kosten · 100 % unverbindlich

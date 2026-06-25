@@ -1,6 +1,11 @@
 // Zentrale externe Links.
+
+// Registrierungsseite der Edelmetall-Pipeline (Tippgeber-/FDL-Onboarding, separate App).
+// Kommt aus VITE_EM_REGISTER_URL (Build-Zeit), damit Live/Staging/lokal je auf die
+// richtige Domain zeigen. Fallback = lokales Laravel-Backend.
 //
-// ONBOARDING_URL führt in das Tippgeber-/FDL-Onboarding der Edelmetalle-Pipeline
-// (separate App). Sobald die Pipeline deployed ist, hier die volle Domain
-// eintragen, z. B. 'https://app.edelmetalle-wertentwickler.de/fdl/onboarding'.
-export const ONBOARDING_URL = '/fdl/onboarding'
+//   Live    → https://app.wertentwickler.de/edelmetalle/register
+//   Staging → https://dev.wertentwickler.de/edelmetalle/register
+//   lokal   → http://127.0.0.1:8000/edelmetalle/register
+export const REGISTER_URL =
+  import.meta.env.VITE_EM_REGISTER_URL || 'http://127.0.0.1:8000/edelmetalle/register'

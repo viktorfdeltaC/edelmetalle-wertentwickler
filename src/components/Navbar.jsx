@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import logoDark from '../assets/logo-dark.png'
 import logoLight from '../assets/logo-light.png'
 import { useTheme } from '../lib/useTheme'
+import { useBooking } from '../context/BookingContext'
 
 const navLinks = [
   { label: 'Warum Edelmetalle', href: '#warum' },
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, toggle } = useTheme()
+  const { openBooking } = useBooking()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -69,12 +71,12 @@ export default function Navbar() {
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
 
-            <a
-              href="#kontakt"
+            <button
+              onClick={openBooking}
               className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full bg-primary hover:brightness-110 text-primary-foreground text-sm font-medium transition-all duration-200"
             >
               Gespräch buchen
-            </a>
+            </button>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -108,13 +110,15 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-3">
-              <a
-                href="#kontakt"
-                onClick={() => setMobileOpen(false)}
-                className="block text-center px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-medium"
+              <button
+                onClick={() => {
+                  setMobileOpen(false)
+                  openBooking()
+                }}
+                className="block w-full text-center px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-medium"
               >
                 Jetzt Gespräch buchen
-              </a>
+              </button>
             </div>
           </div>
         )}

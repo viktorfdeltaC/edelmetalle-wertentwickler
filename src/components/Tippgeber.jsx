@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ONBOARDING_URL } from '../lib/links'
+import { REGISTER_URL } from '../lib/links'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -64,7 +64,9 @@ export default function Tippgeber() {
         {/* CTA */}
         <motion.div {...fadeUp(0.1)} className="text-center">
           <a
-            href={ONBOARDING_URL}
+            href={REGISTER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-primary text-primary-foreground text-base font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.35)] hover:-translate-y-px hover:brightness-110 transition-all duration-200"
           >
             Jetzt als Tippgeber registrieren

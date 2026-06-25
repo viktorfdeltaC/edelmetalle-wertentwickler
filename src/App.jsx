@@ -16,13 +16,15 @@ import CTASection from './components/CTASection'
 import Finanzdienstleister from './components/Finanzdienstleister'
 import Tippgeber from './components/Tippgeber'
 import Footer from './components/Footer'
+import { BookingProvider } from './context/BookingContext'
 
 export default function App() {
   return (
-    <div className="min-h-dvh bg-background text-foreground grain">
-      <Navbar />
-      <PriceTicker />
-      <main>
+    <BookingProvider>
+      <div className="min-h-dvh bg-background text-foreground grain">
+        <Navbar />
+        <PriceTicker />
+        <main>
         <Hero />
         <GoldSequence />
         <SwissStorage />
@@ -38,8 +40,9 @@ export default function App() {
         <CTASection />
         <Finanzdienstleister />
         <Tippgeber />
-      </main>
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
+    </BookingProvider>
   )
 }

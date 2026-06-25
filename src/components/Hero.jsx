@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import heroVideo from '../assets/hero-bg.mp4'
 import heroPoster from '../assets/hero-bg.webp'
+import { useBooking } from '../context/BookingContext'
 
 const container = {
   hidden: {},
@@ -30,6 +31,7 @@ function Words({ text, className = '' }) {
 
 export default function Hero() {
   const videoRef = useRef(null)
+  const { openBooking } = useBooking()
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
@@ -119,12 +121,12 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={rise} className="flex flex-col sm:flex-row items-center justify-center gap-x-7 gap-y-4">
-          <a
-            href="#kontakt"
+          <button
+            onClick={openBooking}
             className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground text-base font-medium shadow-[0_2px_24px_-4px_rgba(201,168,76,0.5)] hover:brightness-110 hover:-translate-y-px transition-all duration-200"
           >
             Jetzt Gespräch buchen
-          </a>
+          </button>
           <a href="#warum" className="group inline-flex items-center gap-1.5 text-white text-base font-medium">
             Mehr erfahren
             <span className="transition-transform duration-200 group-hover:translate-x-1">›</span>

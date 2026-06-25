@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ONBOARDING_URL } from '../lib/links'
+import { useBooking } from '../context/BookingContext'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -40,6 +40,7 @@ const benefits = [
 ]
 
 export default function Finanzdienstleister() {
+  const { openBooking } = useBooking()
   return (
     <section id="finanzdienstleister" className="bg-secondary/30 py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,15 +59,15 @@ export default function Finanzdienstleister() {
               bewährten Sachwert, ohne selbst zu beraten, zu verkaufen oder Verträge
               abzuschließen. Sie empfehlen, den Rest übernehmen wir.
             </p>
-            <a
-              href={ONBOARDING_URL}
+            <button
+              onClick={() => openBooking('partner')}
               className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-base font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.35)] hover:-translate-y-px hover:brightness-110 transition-all duration-200"
             >
               Partner werden
               <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </button>
           </motion.div>
 
           {/* Benefits */}
