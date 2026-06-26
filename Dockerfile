@@ -9,8 +9,10 @@ COPY . .
 # überschreiben (z. B. VITE_EM_API_BASE=https://dev.wertentwickler.de/api/em).
 ARG VITE_EM_API_BASE=https://app.wertentwickler.de/api/em
 ARG VITE_EM_REGISTER_URL=https://app.wertentwickler.de/edelmetalle/register
+ARG VITE_EM_LOGIN_URL=https://app.wertentwickler.de/edelmetalle/login
 ENV VITE_EM_API_BASE=$VITE_EM_API_BASE
 ENV VITE_EM_REGISTER_URL=$VITE_EM_REGISTER_URL
+ENV VITE_EM_LOGIN_URL=$VITE_EM_LOGIN_URL
 RUN npm run build
 
 # --- Runtime-Stage: schlanker Node-Server ---
