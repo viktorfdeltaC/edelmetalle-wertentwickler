@@ -4,13 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) mit Consent Mode v2 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2WPL49TDL"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
+      // DSGVO/TDDDG: alle Consent-Signale standardmäßig verweigert, bis der Nutzer
+      // aktiv zustimmt. Ohne Einwilligung läuft GA nur cookieless (keine Analyse-Cookies).
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+
+      // Frühere Einwilligung (localStorage, max. 12 Monate) sofort anwenden – kein
+      // Flackern für wiederkehrende Besucher. Schlüssel/Format = src/lib/consent.js.
+      try {
+        var c = JSON.parse(localStorage.getItem('ww_consent_v1') || 'null');
+        if (c && c.v === 1 && c.analytics === true && (Date.now() - c.ts) < 31536000000) {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) {}
+
+      gtag('js', new Date());
       gtag('config', 'G-K2WPL49TDL');
     </script>
 

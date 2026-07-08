@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logoDark from '../assets/logo-dark.png'
 import logoLight from '../assets/logo-light.png'
 import LegalModal from './LegalModal'
+import { openConsentSettings } from '../lib/consent'
+import { onOpenLegal } from '../lib/legal'
 
 export default function Footer() {
   const year = new Date().getFullYear()
   const [legal, setLegal] = useState(null) // null | 'impressum' | 'datenschutz'
   const loginUrl = import.meta.env.VITE_EM_LOGIN_URL || 'http://127.0.0.1:8000/edelmetalle/login'
+
+  // Rechtstexte auch von außen öffnbar (z. B. „Datenschutzerklärung"-Link im Cookie-Banner).
+  useEffect(() => onOpenLegal((type) => setLegal(type)), [])
 
   return (
     <footer className="border-t border-border bg-background">
@@ -39,6 +44,14 @@ export default function Footer() {
               className="cursor-pointer hover:text-foreground transition-colors duration-200"
             >
               Datenschutz
+            </button>
+            <span className="text-border">·</span>
+            <button
+              type="button"
+              onClick={openConsentSettings}
+              className="cursor-pointer hover:text-foreground transition-colors duration-200"
+            >
+              Cookie-Einstellungen
             </button>
             <span className="text-border">·</span>
             <a href="#kontakt" className="hover:text-foreground transition-colors duration-200">

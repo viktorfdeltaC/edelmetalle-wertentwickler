@@ -16,6 +16,7 @@ import CTASection from './components/CTASection'
 import Finanzdienstleister from './components/Finanzdienstleister'
 import Tippgeber from './components/Tippgeber'
 import Footer from './components/Footer'
+import CookieConsent from './components/CookieConsent'
 import { BookingProvider } from './context/BookingContext'
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
         <Tippgeber />
         </main>
         <Footer />
+        <CookieConsent />
       </div>
     </BookingProvider>
   )

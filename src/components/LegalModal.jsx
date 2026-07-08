@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { openConsentSettings } from '../lib/consent'
 
 // Overlay für Impressum & Datenschutz (analog BookingModal). Wird zentral z. B. aus dem
 // Footer geöffnet: <LegalModal type={'impressum'|'datenschutz'|null} onClose={…} />.
@@ -267,13 +268,42 @@ export default function LegalModal({ type, onClose }) {
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="font-medium text-foreground mb-1">6. Cookies</h3>
+                  <div className="space-y-3">
+                    <h3 className="font-medium text-foreground mb-1">6. Cookies &amp; Reichweitenmessung (Google Analytics)</h3>
                     <p>
-                      Diese Website verwendet derzeit keine eigenen Cookies und keine Cookies von
-                      Drittanbietern zu Tracking-, Analyse- oder Marketingzwecken. Sollte sich dies ändern,
-                      werden wir Sie vor dem Setzen entsprechender Cookies um Ihre Einwilligung bitten
-                      (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
+                      Für den technischen Betrieb der Website werden notwendige Cookies eingesetzt. Zur anonymen
+                      Reichweitenmessung nutzen wir Google Analytics 4, einen Dienst der Google Ireland Limited,
+                      Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics setzt Cookies und verarbeitet
+                      Nutzungsdaten (u. a. eine gekürzte, anonymisierte IP-Adresse) – jedoch erst, <span className="text-foreground">nachdem</span>
+                      {' '}Sie über unser Cookie-Banner eingewilligt haben.
+                    </p>
+                    <p>
+                      Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Wir
+                      verwenden den Google-Consent-Mode v2: Ohne Ihre Einwilligung werden keine Analyse-Cookies
+                      gesetzt und keine personenbezogenen Kennungen erhoben. Eine Datenübermittlung in die USA
+                      kann stattfinden; die Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert.
+                    </p>
+                    <p>
+                      Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen oder anpassen:
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => { onClose(); openConsentSettings() }}
+                      className="inline-flex px-4 py-2 rounded-full bg-secondary text-foreground text-sm font-medium hover:brightness-95 transition-colors"
+                    >
+                      Cookie-Einstellungen öffnen
+                    </button>
+                    <p>
+                      Weitere Informationen zur Datenverarbeitung durch Google:{' '}
+                      <a
+                        href="https://policies.google.com/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground hover:underline break-words"
+                      >
+                        https://policies.google.com/privacy
+                      </a>
+                      .
                     </p>
                   </div>
 
@@ -427,7 +457,7 @@ export default function LegalModal({ type, onClose }) {
                       notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Fassung
                       kann jederzeit auf dieser Website abgerufen werden.
                     </p>
-                    <p className="mt-3 text-muted-foreground/70">Stand: Mai 2026</p>
+                    <p className="mt-3 text-muted-foreground/70">Stand: Juli 2026</p>
                   </div>
                 </>
               )}
