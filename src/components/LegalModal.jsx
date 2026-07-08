@@ -472,7 +472,7 @@ export default function LegalModal({ type, onClose }) {
                     <h4 className="font-medium text-foreground pt-1">Speicherdauer</h4>
                     <p>
                       Die bei Google Analytics erfassten Nutzer- und Ereignisdaten werden nach einer von uns
-                      eingestellten Aufbewahrungsdauer von [BITTE PRÜFEN: 2 oder 14] Monaten automatisch
+                      eingestellten Aufbewahrungsdauer von 14 Monaten automatisch
                       gelöscht. Die von Google Analytics gesetzten Cookies haben eine Speicherdauer von bis zu
                       2 Jahren, sofern Sie diese nicht vorher löschen.
                     </p>
