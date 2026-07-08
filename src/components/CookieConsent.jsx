@@ -47,9 +47,8 @@ export default function CookieConsent() {
         >
           <div className="w-full max-w-2xl bg-card text-card-foreground border border-border rounded-2xl shadow-2xl p-5 sm:p-6">
             <div className="flex items-start gap-3">
-              <span aria-hidden="true" className="text-xl leading-none mt-0.5">🍪</span>
               <div className="flex-1 min-w-0">
-                <h2 className="font-serif text-lg leading-tight mb-1">Wir verwenden Cookies</h2>
+                <h2 className="font-serif text-lg leading-tight mb-1">Datenschutz &amp; Cookies</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Notwendige Cookies sind für den Betrieb der Website immer aktiv. Für die anonyme
                   Reichweitenmessung (Google Analytics) setzen wir Cookies nur mit Ihrer Einwilligung.
