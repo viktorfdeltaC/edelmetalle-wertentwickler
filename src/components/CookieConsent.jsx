@@ -45,7 +45,9 @@ export default function CookieConsent() {
           aria-label="Cookie-Einstellungen"
           aria-live="polite"
         >
-          <div className="w-full max-w-2xl bg-card text-card-foreground border border-border rounded-2xl shadow-2xl p-5 sm:p-6">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl p-5 sm:p-6 text-card-foreground bg-card/95 backdrop-blur-md border border-border dark:border-white/10 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.6)]">
+            {/* Feiner Gold-Akzent an der Oberkante */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
             <div className="flex items-start gap-3">
               <div className="flex-1 min-w-0">
                 <h2 className="font-serif text-lg leading-tight mb-1">Datenschutz &amp; Cookies</h2>
@@ -90,14 +92,14 @@ export default function CookieConsent() {
                   <button
                     type="button"
                     onClick={() => decide(false)}
-                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary transition-colors order-2 sm:order-1"
+                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 transition-colors order-2 sm:order-1"
                   >
                     Ablehnen
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowSettings(true)}
-                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary transition-colors order-3 sm:order-2"
+                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 transition-colors order-3 sm:order-2"
                   >
                     Einstellungen
                   </button>
@@ -114,7 +116,7 @@ export default function CookieConsent() {
                   <button
                     type="button"
                     onClick={() => decide(analytics)}
-                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary transition-colors"
+                    className="px-5 py-2.5 rounded-full border border-border bg-background text-foreground text-sm font-medium hover:bg-secondary dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 transition-colors"
                   >
                     Auswahl speichern
                   </button>
