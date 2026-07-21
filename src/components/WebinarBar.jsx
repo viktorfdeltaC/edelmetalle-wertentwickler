@@ -2,9 +2,16 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { readConsent } from '../lib/consent'
 
-// Google-Kalender-Termin (in neuem Tab). Kein Registrierungssystem dahinter -> Button heisst "In den Kalender".
+// Selbst-enthaltener "Add to Google Calendar"-Link: legt beim Besucher einen NEUEN
+// Termin an (Titel/Zeit/Details fest im Link). Funktioniert für jeden, anders als ein
+// tmeid-Link, der ein bestehendes (privates) Event referenziert.
 const CAL_URL =
-  'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmU0aDA4Z3Jlcmw3OTFxZzFnaTgyZGc3OWcgaW5mb0B3ZXJ0ZW50d2lja2xlci5kZQ&tmsrc=info%40wertentwickler.de'
+  'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+  '&text=' + encodeURIComponent('Partner-Webinar: Das Edelmetall-Konzept für Vermittler & Empfehlungsgeber') +
+  '&dates=20260728T170000/20260728T180000' +
+  '&ctz=Europe/Berlin' +
+  '&details=' + encodeURIComponent('Kostenloses Live-Webinar, 60 Minuten, online. Veranstalter: Wertentwickler Edelmetalle.') +
+  '&location=' + encodeURIComponent('Online')
 
 // Pro Webinar eigener Key -> ein neues Webinar (neuer Key) zeigt die Bar erneut.
 const DISMISS_KEY = 'ww_webinar_20260728_dismissed'
