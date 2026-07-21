@@ -17,6 +17,14 @@ const CAL_URL =
 const DISMISS_KEY = 'ww_webinar_20260728_dismissed'
 // Ende = 28.07.2026 17:00 + 60 Min (CEST). Danach blendet sich die Bar automatisch aus.
 const ENDS_AT = new Date('2026-07-28T18:00:00+02:00').getTime()
+const WEBINAR_ID = 'partner-webinar-2026-07-28'
+
+// GA4-Event (gtag ist in index.html eingebunden). Consent Mode regelt cookie/cookieless.
+function track(name) {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, { webinar_id: WEBINAR_ID })
+  }
+}
 
 export default function WebinarBar() {
   const [visible, setVisible] = useState(false)
@@ -34,6 +42,7 @@ export default function WebinarBar() {
     const tryShow = () => {
       if (readConsent() !== null) {
         setVisible(true)
+        track('webinar_bar_impression')
         return true
       }
       return false
@@ -85,6 +94,7 @@ export default function WebinarBar() {
                 href={CAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track('webinar_add_to_calendar')}
                 className="flex-shrink-0 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 sm:px-5 py-2 text-sm font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.4)] hover:brightness-110 hover:-translate-y-px transition-all duration-200"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
