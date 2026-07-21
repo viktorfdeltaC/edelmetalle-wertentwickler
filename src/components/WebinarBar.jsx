@@ -5,13 +5,17 @@ import { readConsent } from '../lib/consent'
 // Selbst-enthaltener "Add to Google Calendar"-Link: legt beim Besucher einen NEUEN
 // Termin an (Titel/Zeit/Details fest im Link). Funktioniert für jeden, anders als ein
 // tmeid-Link, der ein bestehendes (privates) Event referenziert.
+const MEET_URL = 'https://meet.google.com/hht-ewps-ake'
 const CAL_URL =
   'https://calendar.google.com/calendar/render?action=TEMPLATE' +
   '&text=' + encodeURIComponent('Partner-Webinar: Das Edelmetall-Konzept für Vermittler & Empfehlungsgeber') +
   '&dates=20260728T170000/20260728T180000' +
   '&ctz=Europe/Berlin' +
-  '&details=' + encodeURIComponent('Kostenloses Live-Webinar, 60 Minuten, online. Veranstalter: Wertentwickler Edelmetalle.') +
-  '&location=' + encodeURIComponent('Online')
+  '&details=' + encodeURIComponent(
+    'Kostenloses Live-Webinar, 60 Minuten.\nTeilnahme über Google Meet: ' + MEET_URL +
+    '\nVeranstalter: Wertentwickler Edelmetalle.'
+  ) +
+  '&location=' + encodeURIComponent(MEET_URL)
 
 // Pro Webinar eigener Key -> ein neues Webinar (neuer Key) zeigt die Bar erneut.
 const DISMISS_KEY = 'ww_webinar_20260728_dismissed'
