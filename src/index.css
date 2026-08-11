@@ -96,3 +96,44 @@
   .delay-4 { animation-delay: 320ms; }
   .delay-5 { animation-delay: 400ms; }
 }
+
+/* Slider im Provisionsrechner — Track-Füllung kommt per --fill aus der Komponente. */
+.range-gold {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  background:
+    linear-gradient(hsl(var(--primary)), hsl(var(--primary))) 0 / var(--fill, 50%) 100% no-repeat,
+    hsl(var(--border));
+}
+.range-gold::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: hsl(var(--card));
+  border: 2px solid hsl(var(--primary));
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  transition: transform 0.12s ease;
+}
+.range-gold::-webkit-slider-thumb:hover { transform: scale(1.12); }
+.range-gold::-webkit-slider-thumb:active { transform: scale(1.2); }
+.range-gold::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: hsl(var(--card));
+  border: 2px solid hsl(var(--primary));
+}
+.range-gold:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range-gold::-webkit-slider-thumb { transition: none; }
+}
