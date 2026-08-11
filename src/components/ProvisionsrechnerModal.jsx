@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useBooking } from '../context/BookingContext'
+import { REGISTER_URL } from '../lib/links'
 
 // Provisionsrechner als Overlay (analog BookingModal/LegalModal). Rechnet mit den
 // Farbtokens der Seite, damit Light/Dark und Schriften mitlaufen.
@@ -48,7 +48,6 @@ function compute({ kunden, wachstum, einmal, rate, zukauf, jahre }) {
 }
 
 export default function ProvisionsrechnerModal({ open, onClose }) {
-  const { openBooking } = useBooking()
   const [inputs, setInputs] = useState(DEFAULTS)
   const set = (key) => (value) => setInputs((prev) => ({ ...prev, [key]: value }))
 
@@ -279,16 +278,18 @@ export default function ProvisionsrechnerModal({ open, onClose }) {
                     </span>
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => { onClose(); openBooking('partner') }}
+                {/* Ziel wie beim Tippgeber-Button: Registrierung in der Pipeline-App. */}
+                <a
+                  href={REGISTER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-all duration-200 w-full sm:w-auto justify-center"
                 >
                   Jetzt Partner werden
                   <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </button>
+                </a>
               </div>
 
               <p className="mt-7 pt-5 border-t border-border text-[11.5px] leading-relaxed text-muted-foreground/70">
