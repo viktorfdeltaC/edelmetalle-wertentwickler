@@ -1,10 +1,39 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { REGISTER_URL } from '../lib/links'
+import { openLegal } from '../lib/legal'
+import { submitLead } from '../lib/booking'
 
 // Provisionsrechner als Overlay (analog BookingModal/LegalModal). Rechnet mit den
 // Farbtokens der Seite, damit Light/Dark und Schriften mitlaufen.
+//
+// Der Rechner zeigt Vermittler-Konditionen, die nicht für Endkunden gedacht sind.
+// Deshalb liegt ein E-Mail-Gate davor. Wer über einen Partner-Link kommt
+// (?partner=…), überspringt es — den Link verteilen wir gezielt an Vermittler.
 const RATE = 0.025
+const UNLOCK_KEY = 'ww_rechner_unlocked'
+
+function readUnlocked() {
+  try {
+    if (localStorage.getItem(UNLOCK_KEY) === '1') return true
+  } catch {
+    /* localStorage nicht verfügbar */
+  }
+  return new URLSearchParams(window.location.search).has('partner')
+}
+
+function persistUnlock() {
+  try {
+    localStorage.setItem(UNLOCK_KEY, '1')
+  } catch {
+    /* ignore */
+  }
+}
+
+// GA4-Event (gtag ist in index.html eingebunden), wie in WebinarBar.
+function track(name) {
+  if (typeof window.gtag === 'function') window.gtag('event', name)
+}
 
 const eurFmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
 const numFmt = new Intl.NumberFormat('de-DE')
@@ -49,7 +78,12 @@ function compute({ kunden, wachstum, einmal, rate, zukauf, jahre }) {
 
 export default function ProvisionsrechnerModal({ open, onClose }) {
   const [inputs, setInputs] = useState(DEFAULTS)
+  const [unlocked, setUnlocked] = useState(readUnlocked)
   const set = (key) => (value) => setInputs((prev) => ({ ...prev, [key]: value }))
+
+  useEffect(() => {
+    if (unlocked) persistUnlock()
+  }, [unlocked])
 
   // Body-Scroll sperren + Escape zum Schließen (wie BookingModal).
   useEffect(() => {
@@ -85,7 +119,7 @@ export default function ProvisionsrechnerModal({ open, onClose }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="rechner-title"
-            className="relative w-full sm:max-w-5xl bg-card text-card-foreground border border-border shadow-2xl rounded-t-3xl sm:rounded-3xl max-h-[92dvh] flex flex-col overflow-hidden"
+            className={`relative w-full ${unlocked ? 'sm:max-w-5xl' : 'sm:max-w-md'} bg-card text-card-foreground border border-border shadow-2xl rounded-t-3xl sm:rounded-3xl max-h-[92dvh] flex flex-col overflow-hidden`}
             initial={{ y: 40, opacity: 0, scale: 0.98 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 40, opacity: 0, scale: 0.98 }}
@@ -111,7 +145,10 @@ export default function ProvisionsrechnerModal({ open, onClose }) {
               </button>
             </div>
 
-            {/* Body */}
+            {/* Body: erst freischalten, dann rechnen */}
+            {!unlocked ? (
+              <EmailGate onUnlock={() => setUnlocked(true)} />
+            ) : (
             <div className="overflow-y-auto px-6 py-6">
               <p className="text-muted-foreground max-w-[54ch] leading-relaxed">
                 Sie empfehlen, wir übernehmen den Rest. Für{' '}
@@ -301,10 +338,99 @@ export default function ProvisionsrechnerModal({ open, onClose }) {
                 Edelmetallhändler MIDA, Verwahrung bei Secure Swiss Storage AG (Schweiz).
               </p>
             </div>
+            )}
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+// E-Mail-Gate vor dem Rechner. Hält keinen entschlossenen Endkunden ab, bremst aber
+// den zufälligen Mitleser und liefert bei echten Interessenten einen Lead.
+function EmailGate({ onUnlock }) {
+  const [email, setEmail] = useState('')
+  const [honeypot, setHoneypot] = useState('')
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
+
+  const submit = async (e) => {
+    e.preventDefault()
+    setSending(true)
+    setError(null)
+    try {
+      await submitLead({ email, quelle: 'provisionsrechner', website: honeypot })
+      track('rechner_unlock')
+      onUnlock()
+    } catch (err) {
+      // 422 = Server sagt konkret was falsch ist (z. B. Adresse ungültig).
+      setError(
+        err?.status === 422
+          ? err.message
+          : 'Das hat gerade nicht geklappt. Bitte versuchen Sie es noch einmal.',
+      )
+      setSending(false)
+    }
+  }
+
+  return (
+    <form onSubmit={submit} className="overflow-y-auto px-6 py-6">
+      <p className="text-muted-foreground leading-relaxed">
+        <span className="text-foreground font-medium">Sie empfehlen einmal, wir zahlen dauerhaft.</span>{' '}
+        Jeder Kauf Ihres Mandanten bringt Ihnen Provision, auch der zehnte Sparplanmonat und jeder
+        Zukauf danach. Sehen Sie, was das bei Ihrem Bestand ergibt.
+      </p>
+
+      <label className="block mt-6">
+        <span className="block text-sm text-muted-foreground mb-1.5">Ihre E-Mail-Adresse</span>
+        <input
+          type="email"
+          required
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="name@kanzlei.de"
+          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition"
+        />
+      </label>
+
+      {/* Honeypot — für Menschen unsichtbar */}
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] w-px h-px opacity-0"
+      />
+
+      {error ? (
+        <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">{error}</p>
+      ) : null}
+
+      <button
+        type="submit"
+        disabled={sending}
+        className="mt-5 w-full inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-medium shadow-[0_2px_16px_-2px_hsl(var(--primary)/0.35)] hover:brightness-110 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {sending ? 'Einen Moment …' : 'Rechner öffnen'}
+      </button>
+
+      <p className="mt-4 text-xs leading-relaxed text-muted-foreground/70">
+        Ihre Adresse nutzen wir nur, um mit Ihnen über eine Partnerschaft zu sprechen. Kein
+        Newsletter, keine Weitergabe an Dritte. Näheres in der{' '}
+        <button
+          type="button"
+          onClick={() => openLegal('datenschutz')}
+          className="underline hover:text-foreground transition-colors"
+        >
+          Datenschutzerklärung
+        </button>
+        .
+      </p>
+    </form>
   )
 }
 

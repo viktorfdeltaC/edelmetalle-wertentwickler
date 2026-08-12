@@ -61,3 +61,12 @@ export function getPublicSlots(variant = 'kunde') {
 export function bookPublic(payload) {
   return request('/public/book', { method: 'POST', body: JSON.stringify(payload) })
 }
+
+/**
+ * Lead ohne Termin — schaltet den Provisionsrechner frei (nur E-Mail).
+ * `website` ist der Honeypot wie bei der Buchung.
+ * @param {{email:string,quelle:string,website?:string}} payload
+ */
+export function submitLead(payload) {
+  return request('/public/lead', { method: 'POST', body: JSON.stringify(payload) })
+}
